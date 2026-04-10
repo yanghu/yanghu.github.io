@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Printing on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/printing/</link><description>Recent content in Printing on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Wed, 11 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/printing/index.xml" rel="self" type="application/rss+xml"/><item><title>在 Synology NAS 上通过 CUPS Docker 实现 AirPrint</title><link>https://yanghu.github.io/zh/posts/airprint-nas-setup/</link><pubDate>Wed, 11 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/airprint-nas-setup/</guid><description>&lt;p&gt;在 Synology NAS 上配置 AirPrint 的操作手册，让 iOS/macOS 设备可以通过局域网打印到 USB 或网络打印机。使用 Docker CUPS 容器和 Synology 内置的 avahi（mDNS）守护进程实现服务发现。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;架构
+ &lt;div id="架构" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%9e%b6%e6%9e%84" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;iPhone
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ mDNS 发现 (_ipp._tcp)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Synology avahi-daemon（eth4，端口 5353）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ 从 /etc/avahi/services/ 读取服务文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;CUPS Docker 容器（host 网络模式，端口 631）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ 生成 /etc/avahi/services/AirPrint-*.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ 将打印任务代理到打印机
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;打印机（如 socket://10.0.20.50:9100）&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;关键设计决策：&lt;/p&gt;</description></item></channel></rss>

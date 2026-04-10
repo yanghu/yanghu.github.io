@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>文章 on Yang's Notes</title><link>https://yanghu.github.io/zh/posts/</link><description>Recent content in 文章 on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Mon, 06 Apr 2026 22:30:00 +0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>与 AI 的 Neovim 现代化折腾纪实 (2026版)</title><link>https://yanghu.github.io/zh/posts/coding/neovim-chat-summary-2026/</link><pubDate>Mon, 06 Apr 2026 22:30:00 +0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/coding/neovim-chat-summary-2026/</guid><description>&lt;p&gt;太久没写代码，重拾 Neovim 时发现不仅肌肉记忆有些生疏，而且因为插件生态的“疯狂内卷”，原来的配置报出了一连串的错误。于是和 AI 结结实实地“折腾”了一番，完成了一次 Neovim 架构的现代化升级。&lt;/p&gt;
+&lt;p&gt;这篇博客是我和 AI 聊天复盘的摘要记录，方便以后如果又断档了，可以快速接上思路。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;1. 认知转换：从“极客生存手册”到“现代 IDE”
+ &lt;div id="1-认知转换从极客生存手册到现代-ide" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-%e8%ae%a4%e7%9f%a5%e8%bd%ac%e6%8d%a2%e4%bb%8e%e6%9e%81%e5%ae%a2%e7%94%9f%e5%ad%98%e6%89%8b%e5%86%8c%e5%88%b0%e7%8e%b0%e4%bb%a3-ide" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;在重新梳理快捷键和工作流时，AI 敏锐地指出我之前的旧文档思维还停留在原生 Vim 时代。而我现在的配置，其实已经是一个极其现代化的 IDE，工具其实在主动配合直觉：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;搜索与查找&lt;/strong&gt;：从敲命令退化到了全屏互动（全面拥抱 &lt;code&gt;fzf-lua&lt;/code&gt;，支持代码预览和悬浮窗）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;精准跳转&lt;/strong&gt;：不再依赖盲按 &lt;code&gt;j/k&lt;/code&gt; 或者原生的标记，而是依靠视觉反馈的 &lt;code&gt;Leap&lt;/code&gt; (&lt;code&gt;s&lt;/code&gt; 瞬移) 和 &lt;code&gt;Flash&lt;/code&gt; (&lt;code&gt;S&lt;/code&gt; 语法树节点选择)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多文件管理&lt;/strong&gt;：用 &lt;code&gt;Grapple&lt;/code&gt; (&lt;code&gt;&amp;lt;leader&amp;gt;ma&lt;/code&gt; 打标, &lt;code&gt;&amp;lt;leader&amp;gt;n&lt;/code&gt; 轮切) 替代了需要心智负担的数字 Buffer 管理，只把核心文件钉在书签里。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;大纲与排错&lt;/strong&gt;：用 &lt;code&gt;Trouble&lt;/code&gt; 和 &lt;code&gt;Aerial&lt;/code&gt; 侧边栏替代了底部的纯文本 Quickfix 列表。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;2. 踩坑纪实：Treesitter 0.10+ 断代大迁移
+ &lt;div id="2-踩坑纪实treesitter-010-断代大迁移" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-%e8%b8%a9%e5%9d%91%e7%ba%aa%e5%ae%9etreesitter-010-%e6%96%ad%e4%bb%a3%e5%a4%a7%e8%bf%81%e7%a7%bb" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;这次遇到了 Neovim 社区目前最大的一个“断层更新”巨坑。因为我使用了 Neovim 0.12.0，核心 API 的变化导致了连环爆炸：&lt;/p&gt;</description></item><item><title>摄像头崩溃级联排查：LLM 每日健康检查如何发现一个隐藏的 Frigate Bug</title><link>https://yanghu.github.io/zh/posts/frigate-nanit-crash-fix/</link><pubDate>Fri, 03 Apr 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/frigate-nanit-crash-fix/</guid><description>&lt;p&gt;每日 LLM 健康检查报告显示 10 台摄像头中有 8 台当天崩溃次数达到数百次。
+追查下去，根因是两台婴儿监控摄像头、一个 go2rtc 重连窗口，以及一次 vaapi 级联崩溃——没有一个环节是直接显而易见的。以下是完整的排查与修复过程。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;问题是如何发现的
+ &lt;div id="问题是如何发现的" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%97%ae%e9%a2%98%e6%98%af%e5%a6%82%e4%bd%95%e5%8f%91%e7%8e%b0%e7%9a%84" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;我在搭建一个每日家庭健康代理——一个定时脚本，查询所有家庭服务（Frigate、Home Assistant、Paperless、arr 媒体栈），然后将数据交给本地 LLM 分析。核心思路是：不再手动逐个检查仪表盘，而是每天早上收到一份摘要，自动标出异常项。&lt;/p&gt;
+&lt;p&gt;Frigate 的检查项查询 &lt;code&gt;/api/stats&lt;/code&gt;，提取每台摄像头的崩溃次数。某天早上，报告返回了这样的数据：&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;nanit_adelia: 2228 次崩溃
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;nanit_leonard: 2228 次崩溃
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;backyard: 847 次崩溃
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;front_door: 391 次崩溃
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;side_a: 203 次崩溃
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;如果没有健康检查，我根本不会注意到——Frigate 容器本身从未重启，Web UI 上各摄像头仍然显示&amp;quot;在线&amp;quot;，也没有任何告警弹出。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;根因：崩溃级联
+ &lt;div id="根因崩溃级联" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%a0%b9%e5%9b%a0%e5%b4%a9%e6%ba%83%e7%ba%a7%e8%81%94" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;顺着日志往前追，每天上午 9 点的事件链如下：&lt;/p&gt;</description></item><item><title>Claude Code WSL 通知与 WezTerm 窗口聚焦</title><link>https://yanghu.github.io/zh/posts/claude-code-wsl-notifications/</link><pubDate>Tue, 24 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/claude-code-wsl-notifications/</guid><description>&lt;p&gt;在 WSL 中运行 Claude Code 时，很容易错过它等待输入的时刻——尤其是当你切换到其他窗口的时候。本文记录了我搭建的通知系统：当 Claude 停止响应或请求权限时，会弹出 Windows 气泡通知，点击通知可直接聚焦到对应的 WezTerm 面板。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;工作原理
+ &lt;div id="工作原理" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Claude Code 在 &lt;code&gt;~/.claude/settings.json&lt;/code&gt; 中提供了钩子（hooks）系统，其中两个事件特别有用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;Stop&lt;/code&gt;&lt;/strong&gt; — Claude 完成一次响应、等待用户输入时触发。钩子载荷包含 &lt;code&gt;last_assistant_message&lt;/code&gt;、&lt;code&gt;cwd&lt;/code&gt; 和 &lt;code&gt;transcript_path&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;PermissionRequest&lt;/code&gt;&lt;/strong&gt; — Claude 需要批准才能运行某个工具（Bash 命令、文件写入等）时触发。载荷包含 &lt;code&gt;tool_name&lt;/code&gt; 和 &lt;code&gt;tool_input&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两个钩子均以异步方式（&lt;code&gt;async: true&lt;/code&gt;）运行 shell 命令，不会阻塞 Claude。&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;hooks&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;PermissionRequest&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;hooks&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;bash ~/.claude/notify-permission.sh&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;async&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt; &lt;span class="p"&gt;}],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;Stop&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;hooks&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;bash ~/.claude/notify-stop.sh&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;async&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 class="relative group"&gt;脚本说明
+ &lt;div id="脚本说明" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e8%84%9a%e6%9c%ac%e8%af%b4%e6%98%8e" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;&lt;code&gt;~/.claude/notify-stop.sh&lt;/code&gt;
+ &lt;div id="claudenotify-stopsh" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#claudenotify-stopsh" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;从钩子的标准输入 JSON 中提取标题、消息正文和 &lt;code&gt;cwd&lt;/code&gt;，然后启动 PowerShell 发送通知：&lt;/p&gt;</description></item><item><title>Frigate 换用 YOLOv9t + OpenVINO（Intel N97）</title><link>https://yanghu.github.io/zh/posts/frigate-yolov9t-openvino/</link><pubDate>Thu, 19 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/frigate-yolov9t-openvino/</guid><description>&lt;p&gt;将 Frigate 默认的 SSD MobileNet 检测器替换为 YOLOv9t（tiny），通过 OpenVINO 运行在 Intel N97 的核显上。涵盖模型导出、正确的 Frigate 配置，以及一个会导致 100% 误报的关键坑。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;环境
+ &lt;div id="环境" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%8e%af%e5%a2%83" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;服务器：&lt;/strong&gt; Intel N97（Debian 13），8 路摄像头&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frigate：&lt;/strong&gt; 0.17，Docker 运行&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;检测器：&lt;/strong&gt; OpenVINO GPU（&lt;code&gt;/dev/dri/renderD128&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;原模型：&lt;/strong&gt; SSD MobileNet v2（内置，300×300）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;新模型：&lt;/strong&gt; YOLOv9t ONNX（320×320，8.3 MB）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;为什么换 YOLOv9t？
+ &lt;div id="为什么换-yolov9t" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%8d%a2-yolov9t" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Frigate OpenVINO 镜像自带的 SSD MobileNet v2 速度快、资源占用低，但对画面边缘目标和部分遮挡目标的识别能力较弱。YOLOv9t（tiny）在精度上有明显提升，计算量却相差不大——在 320×320 输入、N97 核显约 18ms 推理速度下，跑 8 路摄像头完全够用。&lt;/p&gt;</description></item><item><title>Frigate NVR 配置全记录：从 Docker 到 HA 推送通知</title><link>https://yanghu.github.io/zh/posts/frigate-setup/</link><pubDate>Wed, 18 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/frigate-setup/</guid><description>&lt;p&gt;在 Debian 服务器（Intel N97）上部署 Frigate NVR，替代传统 NVR 的检测功能。
+涵盖 Docker Compose、go2rtc 流配置、硬件加速、HA 集成、推送通知及基于区域的告警。
+VLAN 间流量经由主路由器（UCG Ultra）转发。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;硬件与背景
+ &lt;div id="硬件与背景" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%a1%ac%e4%bb%b6%e4%b8%8e%e8%83%8c%e6%99%af" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;服务器：&lt;/strong&gt; Intel N97 迷你主机（&lt;code&gt;debian.lan&lt;/code&gt;，&lt;code&gt;10.0.10.11&lt;/code&gt;），Debian 13&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;摄像头：&lt;/strong&gt; 8 台 Reolink PoE 摄像头（摄像头 VLAN，&lt;code&gt;10.0.40.0/24&lt;/code&gt;），2 台 Nanit 婴儿监控器（IoT VLAN，&lt;code&gt;10.0.20.0/24&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现有 NVR：&lt;/strong&gt; 保留运行，负责持续录像；Frigate 专注于检测和事件片段&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Home Assistant：&lt;/strong&gt; 位于 IoT VLAN（&lt;code&gt;10.0.20.10&lt;/code&gt;），已运行 MQTT Broker&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+&lt;h2 class="relative group"&gt;存储设计
+ &lt;div id="存储设计" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%ad%98%e5%82%a8%e8%ae%be%e8%ae%a1" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;录像存储在 NAS 专用共享目录，避免占用本地 NVMe。&lt;/p&gt;</description></item><item><title>使用 paperless-ai 与 Ollama 为 paperless-ngx 添加 AI 文档分类功能</title><link>https://yanghu.github.io/zh/posts/paperless-ai-setup/</link><pubDate>Thu, 12 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/paperless-ai-setup/</guid><description>&lt;p&gt;本文是一份完整的操作手册，介绍如何通过 &lt;a href="https://github.com/clusterzx/paperless-ai" target="_blank" rel="noreferrer"&gt;paperless-ai&lt;/a&gt; 和本地运行的 &lt;a href="https://ollama.com/" target="_blank" rel="noreferrer"&gt;Ollama&lt;/a&gt; 为 &lt;a href="https://docs.paperless-ngx.com/" target="_blank" rel="noreferrer"&gt;paperless-ngx&lt;/a&gt; 集成 AI 自动标签和分类功能。整套方案使用本地大语言模型读取文档文本，自动填充元数据字段——包括标题、文档类型、标签、联系人、日期以及自定义字段。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;硬件与架构
+ &lt;div id="硬件与架构" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%a1%ac%e4%bb%b6%e4%b8%8e%e6%9e%b6%e6%9e%84" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;NAS（群晖 DS1621+，&lt;code&gt;10.0.10.10&lt;/code&gt;）&lt;/strong&gt;：在 5656 端口运行 paperless-ngx&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;台式 PC&lt;/strong&gt;：Windows，安装了 WSL2、Docker Desktop，配备 RTX 4090&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;目标&lt;/strong&gt;：使用本地 LLM 实现 AI 自动打标/分类，零云端依赖&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;核心架构决策是&lt;strong&gt;拉取模式（pull model）&lt;/strong&gt;：paperless-ai 运行在 WSL2 的 Docker 容器中，轮询 paperless-ngx API 寻找带有 &lt;code&gt;ai-pending&lt;/code&gt; 标签的文档，调用 Ollama 处理后将元数据写回。对于不是 24 小时开机的台式机而言，这是最正确的方案——NAS 保存待处理队列，台式机开机后自动消费。&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;paperless-ngx (NAS)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↑ ↓ (REST API)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; paperless-ai (WSL2 Docker)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↑ ↓ (HTTP)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Ollama (Windows 原生)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↑
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; RTX 4090 (GPU)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Ollama 以原生方式运行在 Windows 上（而非 WSL 内），以获得最佳 GPU 访问性能。在 WSL2 的 Docker 容器内，通过特殊主机名 &lt;code&gt;host.docker.internal&lt;/code&gt; 访问 Ollama。&lt;/p&gt;</description></item><item><title>在 Plex 中整理本地讲座视频并添加 Metadata</title><link>https://yanghu.github.io/zh/posts/plex-local-media-metadata/</link><pubDate>Thu, 12 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/plex-local-media-metadata/</guid><description>&lt;p&gt;如何将本地讲座/课程视频（没有 TMDB/TVDB 收录的）在 Plex 中整理成结构清晰的电视节目，并通过 Plex API 写入自定义描述文字。&lt;/p&gt;
+&lt;p&gt;示例是 Jonathan Biss 的 &lt;em&gt;Exploring Beethoven&amp;rsquo;s Piano Sonatas&lt;/em&gt;——Curtis 音乐学院与 Coursera 合作的 5 部分课程，存储在 Synology NAS 上。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;问题
+ &lt;div id="问题" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%97%ae%e9%a2%98" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Plex 默认的 metadata 爬虫依赖 TMDB 或 TVDB。没有收录的本地讲座视频要么显示成一堆无封面的乱列表，要么被错误匹配到不相关的节目。&lt;/p&gt;
+&lt;p&gt;解决方案：将课程当作**电视节目（TV Show）**处理，使用 Plex 的 &lt;strong&gt;Personal Media Shows&lt;/strong&gt; 代理，再通过 Plex API 推送自定义 metadata。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;第一步：按 Season/Episode 结构整理文件
+ &lt;div id="第一步按-seasonepisode-结构整理文件" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e6%8c%89-seasonepisode-%e7%bb%93%e6%9e%84%e6%95%b4%e7%90%86%e6%96%87%e4%bb%b6" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Plex 的 TV Show 扫描器要求文件名包含 &lt;code&gt;SxxExx&lt;/code&gt;：&lt;/p&gt;</description></item><item><title>用 Paperless-ngx 整理十年文档：从 Google Drive 文件夹到全文检索归档库</title><link>https://yanghu.github.io/zh/posts/paperless-ngx-migration/</link><pubDate>Wed, 11 Mar 2026 00:00:01 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/paperless-ngx-migration/</guid><description>&lt;p&gt;将近十年积累的个人文档从 Google Drive 文件夹体系迁移到 Paperless-ngx 的完整记录。
+涵盖分类体系设计、从 Google Takeout 批量导入、ML 分类器训练，以及日常收件箱工作流。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;为什么要迁移
+ &lt;div id="为什么要迁移" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e8%bf%81%e7%a7%bb" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;过去多年，我的&amp;quot;文档管理&amp;quot;是一棵手工维护的 Google Drive 文件夹树：&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;10 - 文书材料/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 10 - 证件材料/身份证件/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - 移民文档/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - Tax Filing/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 40 - Finance/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 50 - 车辆注册/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 60 - 住房买房/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 80 - Medical/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;20 - 家装住房信息/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;80 - 旅行计划/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;归档时还算顺手，但检索很痛苦。想找&amp;quot;2022 年的保险表格&amp;quot;，要翻六个文件夹，还得猜当时的命名。
+Paperless-ngx 提供全文检索、OCR、以及会从你自己的标注中学习的 ML 分类器——
+对于横跨移民手续、税务申报、房产合同、医疗记录的文档库来说，这是本质性的提升。&lt;/p&gt;</description></item><item><title>在 Synology NAS 上通过 CUPS Docker 实现 AirPrint</title><link>https://yanghu.github.io/zh/posts/airprint-nas-setup/</link><pubDate>Wed, 11 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/airprint-nas-setup/</guid><description>&lt;p&gt;在 Synology NAS 上配置 AirPrint 的操作手册，让 iOS/macOS 设备可以通过局域网打印到 USB 或网络打印机。使用 Docker CUPS 容器和 Synology 内置的 avahi（mDNS）守护进程实现服务发现。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;架构
+ &lt;div id="架构" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%9e%b6%e6%9e%84" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;iPhone
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ mDNS 发现 (_ipp._tcp)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Synology avahi-daemon（eth4，端口 5353）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ 从 /etc/avahi/services/ 读取服务文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;CUPS Docker 容器（host 网络模式，端口 631）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ 生成 /etc/avahi/services/AirPrint-*.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ 将打印任务代理到打印机
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;打印机（如 socket://10.0.20.50:9100）&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;关键设计决策：&lt;/p&gt;</description></item><item><title>Synology Photos 迁移到 Immich 操作手册</title><link>https://yanghu.github.io/zh/posts/synology-to-immich-migration/</link><pubDate>Mon, 09 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/synology-to-immich-migration/</guid><description>&lt;p&gt;将家庭相册从 Synology Photos 迁移到自托管 &lt;a href="https://immich.app/" target="_blank" rel="noreferrer"&gt;Immich&lt;/a&gt; 实例的个人操作手册。
+涵盖批量上传、Google Takeout 导入，以及通过 Synology PostgreSQL 数据库重建相册。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;环境说明
+ &lt;div id="环境说明" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%8e%af%e5%a2%83%e8%af%b4%e6%98%8e" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;来源&lt;/strong&gt;：运行 Synology Photos 的 Synology NAS（多用户）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;目标&lt;/strong&gt;：同一 NAS 上自托管的 Immich&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;上传工具&lt;/strong&gt;：&lt;a href="https://github.com/simulot/immich-go" target="_blank" rel="noreferrer"&gt;immich-go&lt;/a&gt; v0.31+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;客户端&lt;/strong&gt;：Windows 上的 WSL2，SSH 访问 NAS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;相册脚本&lt;/strong&gt;：自定义 Python（&lt;code&gt;migrate_albums.py&lt;/code&gt;），使用 Immich REST API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;第一阶段：照片上传
+ &lt;div id="第一阶段照片上传" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ac%ac%e4%b8%80%e9%98%b6%e6%ae%b5%e7%85%a7%e7%89%87%e4%b8%8a%e4%bc%a0" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;策略
+ &lt;div id="策略" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ad%96%e7%95%a5" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;每位用户有两个来源：&lt;/p&gt;</description></item><item><title>3-4个月宝宝的睡眠训练</title><link>https://yanghu.github.io/zh/posts/parenting/sleep-training-baby/</link><pubDate>Thu, 16 May 2024 21:44:33 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/parenting/sleep-training-baby/</guid><description>&lt;h2 class="relative group"&gt;四个月睡眠倒退期
+ &lt;div id="四个月睡眠倒退期" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%9b%9b%e4%b8%aa%e6%9c%88%e7%9d%a1%e7%9c%a0%e5%80%92%e9%80%80%e6%9c%9f" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;宝宝进入包含5个不同阶段的新睡眠周期：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;REM（快速眼动）：做梦睡眠&lt;/li&gt;
+&lt;li&gt;第一阶段：非常浅/昏昏欲睡的睡眠&lt;/li&gt;
+&lt;li&gt;第二阶段：浅睡眠&lt;/li&gt;
+&lt;li&gt;第三/四阶段：深度恢复性睡眠&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;宝宝在整个夜晚每隔一两个小时就会进入浅睡眠状态。他们需要学会在浅睡/短暂清醒后自行重新入睡。&lt;/p&gt;
+&lt;p&gt;七步指南&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;加满油箱&lt;/li&gt;
+&lt;li&gt;检查引擎&lt;/li&gt;
+&lt;li&gt;设定巡航控制&lt;/li&gt;
+&lt;li&gt;再次补充油量&lt;/li&gt;
+&lt;li&gt;踩下刹车&lt;/li&gt;
+&lt;li&gt;规划休息站&lt;/li&gt;
+&lt;li&gt;卸下包袱&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 class="relative group"&gt;1. 加满油箱
+ &lt;div id="1-加满油箱" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-%e5%8a%a0%e6%bb%a1%e6%b2%b9%e7%ae%b1" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;blockquote&gt;&lt;p&gt;白天保持充足的喂奶量。&lt;/p&gt;
+&lt;/blockquote&gt;&lt;p&gt;生长突增期很常见，我们需要根据饥饿信号来喂奶。如果白天喂得不够，宝宝在夜间就&lt;strong&gt;需要&lt;/strong&gt;补充热量。我们要防止&amp;quot;反向循环&amp;quot;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;夜间频繁喂奶 --&amp;gt; 白天吃奶不好 --&amp;gt; 夜间需要更多喂奶
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 class="relative group"&gt;2. 检查引擎
+ &lt;div id="2-检查引擎" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-%e6%a3%80%e6%9f%a5%e5%bc%95%e6%93%8e" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;blockquote&gt;&lt;p&gt;审查夜间作息流程&lt;/p&gt;
+&lt;/blockquote&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;给宝宝独立的睡眠空间&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创造有利于入睡的环境&lt;/p&gt;</description></item><item><title>幼儿睡眠训练</title><link>https://yanghu.github.io/zh/posts/parenting/sleep-training-toddler/</link><pubDate>Sat, 11 May 2024 22:41:36 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/parenting/sleep-training-toddler/</guid><description>&lt;h2 class="relative group"&gt;为小家伙做好准备
+ &lt;div id="为小家伙做好准备" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%ba%e5%b0%8f%e5%ae%b6%e4%bc%99%e5%81%9a%e5%a5%bd%e5%87%86%e5%a4%87" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;B-E-S-T
+ &lt;div id="b-e-s-t" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#b-e-s-t" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;B - Building confidence（建立自信）：聊聊关于睡觉的&amp;quot;好处&amp;quot;。可以表扬他们睡得很好，或者跟他们说自己睡得好、变强壮了，etc. 产生正面影响&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;E - Expectations（明确期望）：明确表达你对他们的期望，希望他们做什么。&amp;ldquo;I&amp;rsquo;m going to give you lots of kisses, and you&amp;rsquo;re going to lay down on your bed, close your eyes and have a good sleep.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;S - Simulate（模拟练习）：练习睡前流程。&amp;ldquo;show me how to close your eyes?&amp;rdquo;; talk to stuffed animals.&lt;/p&gt;</description></item><item><title>Neovim 工作流</title><link>https://yanghu.github.io/zh/posts/coding/neovim-workflow/</link><pubDate>Tue, 07 May 2024 12:58:05 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/coding/neovim-workflow/</guid><description>&lt;p&gt;与 Vim 相比，Neovim 内置了许多实用插件和功能，Lua 配置也更易读、更强大。以下是一些在 Nvim 中编写代码的实用技巧。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;搜索（文件、文本、诊断、帮助）
+ &lt;div id="搜索文件文本诊断帮助" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%90%9c%e7%b4%a2%e6%96%87%e4%bb%b6%e6%96%87%e6%9c%ac%e8%af%8a%e6%96%ad%e5%b8%ae%e5%8a%a9" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;与 &lt;a href="https://yanghu.github.io/zh/posts/search-in-vim/" &gt;search-in-vim&lt;/a&gt; 中介绍的技巧类似，我们可以在文件中搜索文本，或通过过滤文件名来查找文件。在 Neovim 中，我们使用 &lt;code&gt;fzf-lua&lt;/code&gt;，与 &lt;code&gt;fzf.vim&lt;/code&gt; 非常相似。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用 FZF 选择器&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;FZF 的界面由一个&lt;strong&gt;选择器&lt;/strong&gt;（对条目列表进行模糊搜索）和一个&lt;strong&gt;预览&lt;/strong&gt;窗口组成。在选择器中，使用 &lt;code&gt;c-j/k/n/p&lt;/code&gt;（或 &lt;code&gt;c-u/d&lt;/code&gt;）&lt;strong&gt;移动&lt;/strong&gt;。&lt;code&gt;Tab&lt;/code&gt;/&lt;code&gt;S-Tab&lt;/code&gt; 用于&lt;strong&gt;选择&lt;/strong&gt;文件。默认操作（&lt;code&gt;Enter&lt;/code&gt;）是编辑文件或发送到 qflist，具体取决于选中数量。若要&lt;strong&gt;编辑&lt;/strong&gt;多个文件，使用 &lt;code&gt;c-e&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;另一个实用命令是&amp;quot;恢复&amp;quot;（&lt;code&gt;&amp;lt;Leader&amp;gt;sr&lt;/code&gt;），可以继续上次的 FZF 搜索。&lt;/p&gt;
+
+&lt;h3 class="relative group"&gt;模糊匹配查找文件
+ &lt;div id="模糊匹配查找文件" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%a8%a1%e7%b3%8a%e5%8c%b9%e9%85%8d%e6%9f%a5%e6%89%be%e6%96%87%e4%bb%b6" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;用途&lt;/th&gt;
+ &lt;th&gt;快捷键&lt;/th&gt;
+ &lt;th&gt;说明&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;em&gt;当前目录&lt;/em&gt; 中的文件&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;&amp;lt;Leader&amp;gt;f&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;PWD&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;最近文件（MRU）&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;&amp;lt;Leader&amp;gt;o&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;非常适合搜索之前打开过的文件&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;em&gt;缓冲区&lt;/em&gt; 的同级文件&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;&amp;lt;Leader&amp;gt;s.&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;也包含子目录中的文件&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;项目范围的文件（&lt;em&gt;git&lt;/em&gt;）&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;&amp;lt;Leader&amp;gt;gf&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;只显示 git 跟踪的文件&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;以 &lt;em&gt;缓冲区目录&lt;/em&gt; 为起点的任意路径&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;&amp;lt;Leader&amp;gt;sf&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;按 &lt;code&gt;Enter&lt;/code&gt; 前可以修改路径&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 class="relative group"&gt;搜索文本
+ &lt;div id="搜索文本" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%90%9c%e7%b4%a2%e6%96%87%e6%9c%ac" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+
+&lt;h4 class="relative group"&gt;在文件中 Grep
+ &lt;div id="在文件中-grep" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%9c%a8%e6%96%87%e4%bb%b6%e4%b8%ad-grep" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h4&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;用途&lt;/th&gt;
+ &lt;th&gt;快捷键&lt;/th&gt;
+ &lt;th&gt;说明&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;当前目录中的文件&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;&amp;lt;leader&amp;gt;/&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;使用 &lt;code&gt;keyword -- glob&lt;/code&gt; 过滤文件（&lt;code&gt;!&lt;/code&gt; 表示排除模式）&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Git 根目录&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;&amp;lt;leader&amp;gt;g/&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;同上&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;当前 word/WORD&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;&amp;lt;leader&amp;gt;w&lt;/code&gt;/&lt;code&gt;W&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;w&lt;/code&gt; 在可视模式下也有效&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;实时 grep&lt;/strong&gt;：两个快捷键都使用&amp;quot;实时 grep&amp;quot;，即每次按键都会运行一条新的 &lt;code&gt;ripgrep&lt;/code&gt; 命令并更新结果，可以即时测试 grep 表达式。&lt;/p&gt;</description></item><item><title>在 Vim 中搜索</title><link>https://yanghu.github.io/zh/posts/search-in-vim/</link><pubDate>Sun, 09 May 2021 11:33:39 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/search-in-vim/</guid><description>&lt;p&gt;搜索是开发中最常用也是最重要的操作之一。Vim 提供了非常高效和方便的搜索功能。
+这篇笔记记录了一些常用的搜索命令、例子以及自定义的 key mapping。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 ripgrep 搜索文件内容（&lt;code&gt;:Rg2&lt;/code&gt; 或 &lt;code&gt;,gg&lt;/code&gt;，&lt;code&gt;,gw&lt;/code&gt;/&lt;code&gt;,gW&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;使用 git-grep 搜索 git branch/commit，以及使用 fzf 显示 git grep 的结果（&lt;code&gt;:Ggrep&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;使用 fzf/coc list 搜索当前文件/buffers 中的行，实现快速定位/跳转&lt;/li&gt;
+&lt;li&gt;使用 quickfix lists 快速访问上述搜索的结果，以及利用 &lt;code&gt;:cdo&lt;/code&gt;/&lt;code&gt;:cfdo&lt;/code&gt; 等命令对结果进行批量操作&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;在文件中通用搜索
+ &lt;div id="在文件中通用搜索" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%9c%a8%e6%96%87%e4%bb%b6%e4%b8%ad%e9%80%9a%e7%94%a8%e6%90%9c%e7%b4%a2" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;Ripgrep 与 fzf
+ &lt;div id="ripgrep-与-fzf" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#ripgrep-%e4%b8%8e-fzf" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;fzf.vim&lt;/code&gt; 提供了 &lt;code&gt;:Rg&lt;/code&gt; 命令来调用 ripgrep 搜索当前目录。不过，我构建了一个更实用的变体，支持指定路径并向 ripgrep 传递其他参数，映射到快捷键 &lt;code&gt;&amp;lt;Leader&amp;gt;gg&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>Vim 技巧</title><link>https://yanghu.github.io/zh/posts/vim-tips/</link><pubDate>Thu, 15 Apr 2021 00:01:16 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/vim-tips/</guid><description>&lt;h2 class="relative group"&gt;搜索与处理多个文件
+ &lt;div id="搜索与处理多个文件" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%90%9c%e7%b4%a2%e4%b8%8e%e5%a4%84%e7%90%86%e5%a4%9a%e4%b8%aa%e6%96%87%e4%bb%b6" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;搜索
+ &lt;div id="搜索" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%90%9c%e7%b4%a2" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;关于在文件中搜索词语/符号，请参见 &lt;a href="https://yanghu.github.io/zh/posts/search-in-vim/" &gt;search-in-vim&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;要快速按文件名查找并打开文件，我使用 &lt;code&gt;fzf&lt;/code&gt; 和 &lt;code&gt;coc-list&lt;/code&gt;，以及以下按键绑定。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;通用搜索&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;要在_工作目录_（而非当前文件/缓冲区目录）中打开文件，使用 &lt;code&gt;:Files&lt;/code&gt; 或 &lt;code&gt;,lc&lt;/code&gt;（&lt;em&gt;l&lt;/em&gt;ist &lt;em&gt;c&lt;/em&gt;urrent，列出当前目录）。&lt;/p&gt;
+&lt;p&gt;我还创建了快捷命令 &lt;code&gt;,lf&lt;/code&gt;（&lt;em&gt;l&lt;/em&gt;ist &lt;em&gt;f&lt;/em&gt;ile，列出文件），从当前缓冲区所在目录开始，可以在开始搜索前输入路径。&lt;/p&gt;
+&lt;p&gt;此外，还有 &lt;code&gt;:Buffers&lt;/code&gt; / &lt;code&gt;,b&lt;/code&gt; 用于列出已打开的缓冲区，方便快速跳转。当打开了很多文件时非常有用。不过，使用 quickfix 列表、标记，或 &lt;code&gt;:Lines&lt;/code&gt; / &lt;code&gt;,l*&lt;/code&gt; 精确跳转到某一行往往更高效。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Git 相关&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;要打开当前 &lt;em&gt;git&lt;/em&gt; 仓库中的文件，使用 &lt;code&gt;:GFiles&lt;/code&gt; 或 &lt;code&gt;,gc&lt;/code&gt;（&lt;em&gt;g&lt;/em&gt;it &lt;em&gt;c&lt;/em&gt;ontent），这使用 &lt;code&gt;git ls-files&lt;/code&gt; 的文件列表，会遵循 &lt;code&gt;.gitignore&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;要只查看已修改的文件，使用 &lt;code&gt;GFiles?&lt;/code&gt; 或 &lt;code&gt;,gs&lt;/code&gt;（&lt;em&gt;g&lt;/em&gt;it &lt;em&gt;s&lt;/em&gt;tatus）。&lt;/p&gt;</description></item><item><title>键盘 PCB 设计</title><link>https://yanghu.github.io/zh/posts/keyboard-pcb-design/</link><pubDate>Sun, 11 Apr 2021 18:37:25 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/keyboard-pcb-design/</guid><description>&lt;h1 class="relative group"&gt;功能亮点
+ &lt;div id="功能亮点" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8a%9f%e8%83%bd%e4%ba%ae%e7%82%b9" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;最初我想做一块分体键盘，但由于已经有了一块分体板（crkbd），做一块类似 Arteus/Reviunge 的一体板更有意义。&lt;/p&gt;
+&lt;p&gt;设计采用激进式行列错位（与我的分体设计相同的列错位），列方向倾斜 15 度。&lt;/p&gt;
+&lt;p&gt;其他功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OLED 状态显示&lt;/li&gt;
+&lt;li&gt;RGB 底部灯&lt;/li&gt;
+&lt;li&gt;音频&lt;/li&gt;
+&lt;li&gt;编码器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 class="relative group"&gt;STM32 设计考量
+ &lt;div id="stm32-设计考量" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#stm32-%e8%ae%be%e8%ae%a1%e8%80%83%e9%87%8f" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;由于 F072 缺货，将使用 F411。&lt;/p&gt;
+&lt;p&gt;在 QMK 中配置 STM 芯片的技巧：https://discord.com/channels/440868230475677696/440870965728116754/839978277489082370&lt;/p&gt;
+&lt;p&gt;查找使用特定芯片的键盘的代码片段：&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; % git grep &amp;#39;MCU\s*=\s*STM32F411&amp;#39; keyboards/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/handwired/onekey/blackpill_f411/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/handwired/onekey/blackpill_f411_tinyuf2/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/handwired/pill60/blackpill_f411/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/handwired/riblee_f411/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/matrix/m20add/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/matrix/noah/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/tkw/grandiceps/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/tkw/stoutgat/v2/f411/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/zvecr/zv48/f411/rules.mk:MCU = STM32F411&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 class="relative group"&gt;外设的 DMA 通道
+ &lt;div id="外设的-dma-通道" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%a4%96%e8%ae%be%e7%9a%84-dma-%e9%80%9a%e9%81%93" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I2C、SPI、ADC、DAC 等外设使用 DMA 通道。PWM 也可以使用 DMA 以获得更好的性能，例如用于 LED 驱动器。STM32F072 有 7 个 DMA 通道（详情见参考手册）。选择外设时需要谨慎，避免 DMA 通道冲突。&lt;/p&gt;</description></item></channel></rss>

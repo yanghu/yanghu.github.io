@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ffmpeg on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/ffmpeg/</link><description>Recent content in Ffmpeg on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Fri, 03 Apr 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml"/><item><title>摄像头崩溃级联排查：LLM 每日健康检查如何发现一个隐藏的 Frigate Bug</title><link>https://yanghu.github.io/zh/posts/frigate-nanit-crash-fix/</link><pubDate>Fri, 03 Apr 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/frigate-nanit-crash-fix/</guid><description>&lt;p&gt;每日 LLM 健康检查报告显示 10 台摄像头中有 8 台当天崩溃次数达到数百次。
+追查下去，根因是两台婴儿监控摄像头、一个 go2rtc 重连窗口，以及一次 vaapi 级联崩溃——没有一个环节是直接显而易见的。以下是完整的排查与修复过程。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;问题是如何发现的
+ &lt;div id="问题是如何发现的" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%97%ae%e9%a2%98%e6%98%af%e5%a6%82%e4%bd%95%e5%8f%91%e7%8e%b0%e7%9a%84" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;我在搭建一个每日家庭健康代理——一个定时脚本，查询所有家庭服务（Frigate、Home Assistant、Paperless、arr 媒体栈），然后将数据交给本地 LLM 分析。核心思路是：不再手动逐个检查仪表盘，而是每天早上收到一份摘要，自动标出异常项。&lt;/p&gt;
+&lt;p&gt;Frigate 的检查项查询 &lt;code&gt;/api/stats&lt;/code&gt;，提取每台摄像头的崩溃次数。某天早上，报告返回了这样的数据：&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;nanit_adelia: 2228 次崩溃
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;nanit_leonard: 2228 次崩溃
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;backyard: 847 次崩溃
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;front_door: 391 次崩溃
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;side_a: 203 次崩溃
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;如果没有健康检查，我根本不会注意到——Frigate 容器本身从未重启，Web UI 上各摄像头仍然显示&amp;quot;在线&amp;quot;，也没有任何告警弹出。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;根因：崩溃级联
+ &lt;div id="根因崩溃级联" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%a0%b9%e5%9b%a0%e5%b4%a9%e6%ba%83%e7%ba%a7%e8%81%94" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;顺着日志往前追，每天上午 9 点的事件链如下：&lt;/p&gt;</description></item></channel></rss>

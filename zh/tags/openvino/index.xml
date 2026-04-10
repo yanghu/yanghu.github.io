@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Openvino on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/openvino/</link><description>Recent content in Openvino on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Thu, 19 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/openvino/index.xml" rel="self" type="application/rss+xml"/><item><title>Frigate 换用 YOLOv9t + OpenVINO（Intel N97）</title><link>https://yanghu.github.io/zh/posts/frigate-yolov9t-openvino/</link><pubDate>Thu, 19 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/frigate-yolov9t-openvino/</guid><description>&lt;p&gt;将 Frigate 默认的 SSD MobileNet 检测器替换为 YOLOv9t（tiny），通过 OpenVINO 运行在 Intel N97 的核显上。涵盖模型导出、正确的 Frigate 配置，以及一个会导致 100% 误报的关键坑。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;环境
+ &lt;div id="环境" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%8e%af%e5%a2%83" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;服务器：&lt;/strong&gt; Intel N97（Debian 13），8 路摄像头&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frigate：&lt;/strong&gt; 0.17，Docker 运行&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;检测器：&lt;/strong&gt; OpenVINO GPU（&lt;code&gt;/dev/dri/renderD128&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;原模型：&lt;/strong&gt; SSD MobileNet v2（内置，300×300）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;新模型：&lt;/strong&gt; YOLOv9t ONNX（320×320，8.3 MB）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;为什么换 YOLOv9t？
+ &lt;div id="为什么换-yolov9t" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%8d%a2-yolov9t" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Frigate OpenVINO 镜像自带的 SSD MobileNet v2 速度快、资源占用低，但对画面边缘目标和部分遮挡目标的识别能力较弱。YOLOv9t（tiny）在精度上有明显提升，计算量却相差不大——在 320×320 输入、N97 核显约 18ms 推理速度下，跑 8 路摄像头完全够用。&lt;/p&gt;</description></item></channel></rss>

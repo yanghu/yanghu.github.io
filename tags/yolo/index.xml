@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Yolo on Yang's Notes</title><link>https://yanghu.github.io/tags/yolo/</link><description>Recent content in Yolo on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Thu, 19 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/tags/yolo/index.xml" rel="self" type="application/rss+xml"/><item><title>Switching Frigate to YOLOv9t with OpenVINO on Intel N97</title><link>https://yanghu.github.io/posts/frigate-yolov9t-openvino/</link><pubDate>Thu, 19 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/frigate-yolov9t-openvino/</guid><description>&lt;p&gt;Replacing Frigate&amp;rsquo;s default SSD MobileNet detector with YOLOv9t (tiny) running on the Intel N97&amp;rsquo;s integrated GPU via OpenVINO. Covers model export, correct Frigate config, and a critical gotcha that causes 100% false positives if you get it wrong.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Setup
+ &lt;div id="setup" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#setup" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server:&lt;/strong&gt; Intel N97 (Debian 13), 8 camera streams&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frigate:&lt;/strong&gt; 0.17, running in Docker&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Detector:&lt;/strong&gt; OpenVINO GPU (&lt;code&gt;/dev/dri/renderD128&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Previous model:&lt;/strong&gt; SSD MobileNet v2 (built-in, 300×300)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;New model:&lt;/strong&gt; YOLOv9t ONNX (320×320, 8.3 MB)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;Why YOLOv9t?
+ &lt;div id="why-yolov9t" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#why-yolov9t" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;The default SSD MobileNet v2 bundled with Frigate&amp;rsquo;s OpenVINO image is fast and lightweight, but accuracy suffers on partially occluded objects and objects at the edges of the frame. YOLOv9t (tiny) offers meaningfully better detection quality with a similar computational footprint — at 320×320 input and ~18ms inference on the N97 iGPU, it handles 8 concurrent camera streams comfortably.&lt;/p&gt;</description></item></channel></rss>

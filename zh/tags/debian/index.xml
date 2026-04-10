@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Debian on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/debian/</link><description>Recent content in Debian on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Wed, 18 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/debian/index.xml" rel="self" type="application/rss+xml"/><item><title>Frigate NVR 配置全记录：从 Docker 到 HA 推送通知</title><link>https://yanghu.github.io/zh/posts/frigate-setup/</link><pubDate>Wed, 18 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/frigate-setup/</guid><description>&lt;p&gt;在 Debian 服务器（Intel N97）上部署 Frigate NVR，替代传统 NVR 的检测功能。
+涵盖 Docker Compose、go2rtc 流配置、硬件加速、HA 集成、推送通知及基于区域的告警。
+VLAN 间流量经由主路由器（UCG Ultra）转发。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;硬件与背景
+ &lt;div id="硬件与背景" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%a1%ac%e4%bb%b6%e4%b8%8e%e8%83%8c%e6%99%af" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;服务器：&lt;/strong&gt; Intel N97 迷你主机（&lt;code&gt;debian.lan&lt;/code&gt;，&lt;code&gt;10.0.10.11&lt;/code&gt;），Debian 13&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;摄像头：&lt;/strong&gt; 8 台 Reolink PoE 摄像头（摄像头 VLAN，&lt;code&gt;10.0.40.0/24&lt;/code&gt;），2 台 Nanit 婴儿监控器（IoT VLAN，&lt;code&gt;10.0.20.0/24&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现有 NVR：&lt;/strong&gt; 保留运行，负责持续录像；Frigate 专注于检测和事件片段&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Home Assistant：&lt;/strong&gt; 位于 IoT VLAN（&lt;code&gt;10.0.20.10&lt;/code&gt;），已运行 MQTT Broker&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+&lt;h2 class="relative group"&gt;存储设计
+ &lt;div id="存储设计" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%ad%98%e5%82%a8%e8%ae%be%e8%ae%a1" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;录像存储在 NAS 专用共享目录，避免占用本地 NVMe。&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dev Tools on Yang's Notes</title><link>https://yanghu.github.io/categories/dev-tools/</link><description>Recent content in Dev Tools on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Tue, 24 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/categories/dev-tools/index.xml" rel="self" type="application/rss+xml"/><item><title>Claude Code WSL Notifications with WezTerm Focus</title><link>https://yanghu.github.io/posts/claude-code-wsl-notifications/</link><pubDate>Tue, 24 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/claude-code-wsl-notifications/</guid><description>&lt;p&gt;When running Claude Code inside WSL, it&amp;rsquo;s easy to miss when it&amp;rsquo;s waiting for your input — especially if you&amp;rsquo;ve switched to another window while it works. This post documents the notification system I set up: Windows toast notifications that fire when Claude stops and when it needs permission, with click-to-focus on the exact WezTerm pane.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;How It Works
+ &lt;div id="how-it-works" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#how-it-works" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Claude Code has a hooks system in &lt;code&gt;~/.claude/settings.json&lt;/code&gt;. Two events are useful here:&lt;/p&gt;</description></item></channel></rss>

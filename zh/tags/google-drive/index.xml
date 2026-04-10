@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Google-Drive on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/google-drive/</link><description>Recent content in Google-Drive on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Wed, 11 Mar 2026 00:00:01 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/google-drive/index.xml" rel="self" type="application/rss+xml"/><item><title>用 Paperless-ngx 整理十年文档：从 Google Drive 文件夹到全文检索归档库</title><link>https://yanghu.github.io/zh/posts/paperless-ngx-migration/</link><pubDate>Wed, 11 Mar 2026 00:00:01 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/paperless-ngx-migration/</guid><description>&lt;p&gt;将近十年积累的个人文档从 Google Drive 文件夹体系迁移到 Paperless-ngx 的完整记录。
+涵盖分类体系设计、从 Google Takeout 批量导入、ML 分类器训练，以及日常收件箱工作流。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;为什么要迁移
+ &lt;div id="为什么要迁移" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e8%bf%81%e7%a7%bb" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;过去多年，我的&amp;quot;文档管理&amp;quot;是一棵手工维护的 Google Drive 文件夹树：&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;10 - 文书材料/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 10 - 证件材料/身份证件/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - 移民文档/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - Tax Filing/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 40 - Finance/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 50 - 车辆注册/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 60 - 住房买房/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 80 - Medical/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;20 - 家装住房信息/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;80 - 旅行计划/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;归档时还算顺手，但检索很痛苦。想找&amp;quot;2022 年的保险表格&amp;quot;，要翻六个文件夹，还得猜当时的命名。
+Paperless-ngx 提供全文检索、OCR、以及会从你自己的标注中学习的 ML 分类器——
+对于横跨移民手续、税务申报、房产合同、医疗记录的文档库来说，这是本质性的提升。&lt;/p&gt;</description></item></channel></rss>

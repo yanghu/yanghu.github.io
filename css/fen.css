@@ -1,0 +1,32 @@
+/* Notation and chess diagrams */
+.mainline {
+	font-family: FigurineSymbol, Times New Roman, serif;
+	font-weight: bold;
+}
+
+.fen-diag {
+	align-items: center;
+}
+
+.fen-diag-cnv-wrapper {
+	max-width: 90%;
+	height: 400px;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+figcaption {
+	font-style: italic;
+	text-align: center;
+	line-height: 1.2rem;
+	font-family: Roboto, sans-serif;
+}
+
+/* To handle embedded lichess iframes*/
+iframe[src*="lichess"] {
+	border: none;
+	max-width: 100%;
+	width: 800px;
+	height: 495px;
+}

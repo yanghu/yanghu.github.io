@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vim on Yang's Notes</title><link>https://yanghu.github.io/tags/vim/</link><description>Recent content in Vim on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Tue, 07 May 2024 12:58:05 -0700</lastBuildDate><atom:link href="https://yanghu.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml"/><item><title>Neovim Workflow</title><link>https://yanghu.github.io/posts/coding/neovim-workflow/</link><pubDate>Tue, 07 May 2024 12:58:05 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/coding/neovim-workflow/</guid><description>&lt;p&gt;Neovim comes with lots of useful plugins, and built-in features, compared to
+Vim. It&amp;rsquo;s lua configs is also much more readable and powerful compared to Vim.
+Here&amp;rsquo;s some useful tips for coding in Nvim.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Searching(files, text, diagnostics, help)
+ &lt;div id="searchingfiles-text-diagnostics-help" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#searchingfiles-text-diagnostics-help" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Similar to techniques mentioned in
+&lt;a href="https://yanghu.github.io/posts/search-in-vim/" &gt;search-in-vim&lt;/a&gt;, we can search for text inside
+files, or looking for files by filtering filenames. In Neovim, we use &lt;code&gt;fzf-lua&lt;/code&gt;
+which is very similar to &lt;code&gt;fzf.vim&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Search in Vim</title><link>https://yanghu.github.io/posts/search-in-vim/</link><pubDate>Sun, 09 May 2021 11:33:39 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/search-in-vim/</guid><description>&lt;p&gt;搜索是开发中最常用也是最重要的操作之一. Vim提供了非常高效和方便的搜索功能.
+这篇笔记记录了一些常用的搜索命令,例子以及自定义的key mapping&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用ripgrep搜索文件内容 (&lt;code&gt;:Rg2&lt;/code&gt; or &lt;code&gt;,gg&lt;/code&gt;, &lt;code&gt;,gw&lt;/code&gt;/&lt;code&gt;,gW&lt;/code&gt; )&lt;/li&gt;
+&lt;li&gt;使用git-grep搜索git branch/commit, 以及使用fzf显示git grep的结果 (&lt;code&gt;:Ggrep&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;使用fzf/coc list搜索当前文件/buffers中的lines, 实现快速定位/跳转&lt;/li&gt;
+&lt;li&gt;使用quickfix lists快速访问上述搜索的结果,
+以及利用&lt;code&gt;:cdo&lt;/code&gt;/&lt;code&gt;:cfdo&lt;/code&gt;等命令对结果进行批量操作.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;General searching inside files
+ &lt;div id="general-searching-inside-files" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#general-searching-inside-files" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;Ripgrep with fzf
+ &lt;div id="ripgrep-with-fzf" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#ripgrep-with-fzf" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;fzf.vim&lt;/code&gt; provides a &lt;code&gt;:Rg&lt;/code&gt; command to call ripgrep and search the current
+directory. However, a more useful variant is built to support specify path and
+pass other parameters to ripgrep, I used this snippet and mapped this to
+shortcut &lt;code&gt;&amp;lt;Leader&amp;gt;gg&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Vim Tips</title><link>https://yanghu.github.io/posts/vim-tips/</link><pubDate>Thu, 15 Apr 2021 00:01:16 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/vim-tips/</guid><description>&lt;h2 class="relative group"&gt;Search and work with many files
+ &lt;div id="search-and-work-with-many-files" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#search-and-work-with-many-files" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;Searching
+ &lt;div id="searching" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#searching" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;For searching words / symbols within files, see &lt;a href="https://yanghu.github.io/posts/search-in-vim/" &gt;search-in-vim&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To quick find and open files by filename, I use &lt;code&gt;fzf&lt;/code&gt; and &lt;code&gt;coc-list&lt;/code&gt;, and the
+follwing key bindings.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;General search&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;To open files in the &lt;em&gt;working directory&lt;/em&gt; ( not current file/buffer dir), use
+&lt;code&gt;:Files&lt;/code&gt; or &lt;code&gt;,lc&lt;/code&gt; ( &lt;em&gt;l&lt;/em&gt;ist &lt;em&gt;c&lt;/em&gt;urrent)&lt;/p&gt;</description></item></channel></rss>

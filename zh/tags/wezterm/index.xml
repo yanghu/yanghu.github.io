@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wezterm on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/wezterm/</link><description>Recent content in Wezterm on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Tue, 24 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/wezterm/index.xml" rel="self" type="application/rss+xml"/><item><title>Claude Code WSL 通知与 WezTerm 窗口聚焦</title><link>https://yanghu.github.io/zh/posts/claude-code-wsl-notifications/</link><pubDate>Tue, 24 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/claude-code-wsl-notifications/</guid><description>&lt;p&gt;在 WSL 中运行 Claude Code 时，很容易错过它等待输入的时刻——尤其是当你切换到其他窗口的时候。本文记录了我搭建的通知系统：当 Claude 停止响应或请求权限时，会弹出 Windows 气泡通知，点击通知可直接聚焦到对应的 WezTerm 面板。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;工作原理
+ &lt;div id="工作原理" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Claude Code 在 &lt;code&gt;~/.claude/settings.json&lt;/code&gt; 中提供了钩子（hooks）系统，其中两个事件特别有用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;Stop&lt;/code&gt;&lt;/strong&gt; — Claude 完成一次响应、等待用户输入时触发。钩子载荷包含 &lt;code&gt;last_assistant_message&lt;/code&gt;、&lt;code&gt;cwd&lt;/code&gt; 和 &lt;code&gt;transcript_path&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;PermissionRequest&lt;/code&gt;&lt;/strong&gt; — Claude 需要批准才能运行某个工具（Bash 命令、文件写入等）时触发。载荷包含 &lt;code&gt;tool_name&lt;/code&gt; 和 &lt;code&gt;tool_input&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两个钩子均以异步方式（&lt;code&gt;async: true&lt;/code&gt;）运行 shell 命令，不会阻塞 Claude。&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;hooks&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;PermissionRequest&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;hooks&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;bash ~/.claude/notify-permission.sh&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;async&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt; &lt;span class="p"&gt;}],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;Stop&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;hooks&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;command&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;bash ~/.claude/notify-stop.sh&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;&amp;#34;async&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 class="relative group"&gt;脚本说明
+ &lt;div id="脚本说明" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e8%84%9a%e6%9c%ac%e8%af%b4%e6%98%8e" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;&lt;code&gt;~/.claude/notify-stop.sh&lt;/code&gt;
+ &lt;div id="claudenotify-stopsh" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#claudenotify-stopsh" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;从钩子的标准输入 JSON 中提取标题、消息正文和 &lt;code&gt;cwd&lt;/code&gt;，然后启动 PowerShell 发送通知：&lt;/p&gt;</description></item></channel></rss>

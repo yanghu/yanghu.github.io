@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Yang's Notes</title><link>https://yanghu.github.io/posts/</link><description>Recent content in Posts on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Fri, 03 Apr 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>1. First Principles: Endings, Middle-game and Openings</title><link>https://yanghu.github.io/posts/chess-fundamentals/first-principles/</link><pubDate>Sat, 16 Jan 2021 16:16:44 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/chess-fundamentals/first-principles/</guid><description>&lt;h3 class="relative group"&gt;Single pawn
+ &lt;div id="single-pawn" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#single-pawn" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;em&gt;King&lt;/em&gt; should be in front of his Pawn, with at least one intervening square.&lt;/li&gt;
+&lt;li&gt;Advance the King as far as possible with the safety of the pawn, and never to advance the Pawn until it is essential to its own safety.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 class="relative group"&gt;Other Pawn Endings
+ &lt;div id="other-pawn-endings" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#other-pawn-endings" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;div class="admonition admonition-note"&gt;
+ &lt;div class="admonition-header"&gt;
+ &lt;span&gt;ℹ️&lt;/span&gt;
+ &lt;span&gt;Don&amp;#39;t push pawns prematurely&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="admonition-content"&gt;
+ don&amp;rsquo;t push the pawn prematurely, which may send it to the opponent&amp;rsquo;s King, and you can&amp;rsquo;t protect it.
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;In this position, if white pushes the f-pawn, the game draws because &lt;code&gt;... Kf7&lt;/code&gt;. White is better to move his King and force the Black king to the corner, with help from &lt;code&gt;g6&lt;/code&gt; push, controlling the f7 square .&lt;/p&gt;</description></item><item><title>Imbalances and Bishop vs Knight</title><link>https://yanghu.github.io/posts/amateurs-mind/imbalances/</link><pubDate>Fri, 15 Jan 2021 22:17:41 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/amateurs-mind/imbalances/</guid><description>&lt;p&gt;Imbalances: the &lt;em&gt;static&lt;/em&gt; and &lt;em&gt;dynamic&lt;/em&gt; differences.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;List of imbalances
+ &lt;div id="list-of-imbalances" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#list-of-imbalances" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Minor pieces&lt;/strong&gt;: the interplay between Bishops and Knights&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pawn structure&lt;/strong&gt;: doubled/isolated/backward/passed pawns, islands.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Space&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Material&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Files and squares&lt;/strong&gt;: files, ranks and diagonals act as &lt;em&gt;pathway&lt;/em&gt;, while
+squares act as &lt;em&gt;homes&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Development&lt;/strong&gt;: this is a temporary balance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Initiative&lt;/strong&gt;: also temporary.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="admonition admonition-warning"&gt;
+ &lt;div class="admonition-header"&gt;
+ &lt;span&gt;⚠️&lt;/span&gt;
+ &lt;span&gt;Don&amp;#39;t look at individual moves!&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="admonition-content"&gt;
+ Try to understand the position, before starting calculation on individual moves.
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 class="relative group"&gt;Bishop vs Knights
+ &lt;div id="bishop-vs-knights" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#bishop-vs-knights" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;It&amp;rsquo;s the most important imbalance of the game.&lt;/p&gt;</description></item><item><title>The Center, Territory and Space</title><link>https://yanghu.github.io/posts/amateurs-mind/center-and-space/</link><pubDate>Sun, 17 Jan 2021 23:18:05 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/amateurs-mind/center-and-space/</guid><description>&lt;p&gt;Amateurs often have no clue of how to use center/space advantage, instead keen
+on forcing continuations, and unjustified attacks.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Rules of center
+ &lt;div id="rules-of-center" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#rules-of-center" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;Rule 1. Full pawn center gives control and space.
+ &lt;div id="rule-1-full-pawn-center-gives-control-and-space" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#rule-1-full-pawn-center-gives-control-and-space" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;A full pawn center gives its owner territory and control over key central
+squares.&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Pawn Structure</title><link>https://yanghu.github.io/posts/amateurs-mind/pawns/</link><pubDate>Sun, 24 Jan 2021 23:04:49 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/amateurs-mind/pawns/</guid><description>&lt;p&gt;Knowning which pawn structure is &amp;ldquo;weak&amp;rdquo; is not enough: one need to know how to attack them, or making use
+of the weaknesses.&lt;/p&gt;
+&lt;p&gt;In general, the formular to attack weak pawns(isolated, backward) is to control the square in front of
+the pawn so it can&amp;rsquo;t advance. (the squares are usually weak since no pawn can defend it). Then pile up
+on the weakness.&lt;/p&gt;
+&lt;p&gt;Every structure has its pros and cons.&lt;/p&gt;</description></item><item><title>4. General Theory</title><link>https://yanghu.github.io/posts/chess-fundamentals/general-theory/</link><pubDate>Sat, 16 Jan 2021 22:12:23 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/chess-fundamentals/general-theory/</guid><description>&lt;h3 class="relative group"&gt;Lichess study of this chapter
+ &lt;div id="lichess-study-of-this-chapter" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lichess-study-of-this-chapter" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+
+
+
+	
+
+
+	
+
+&lt;div class="container"&gt;
+&lt;iframe src="https://lichess.org/study/embed/7do6h1dt/uy7WjIOf#0" class="lichess-board" data-url="https://lichess.org/study/embed/7do6h1dt/uy7WjIOf#0"&gt;
+ &lt;p&gt;Embedded chessboard from &lt;a href="https://lichess.org/study/embed/7do6h1dt/uy7WjIOf#0"&gt;lichess.org&lt;/a&gt;&lt;/p&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;h3 class="relative group"&gt;The initiative
+ &lt;div id="the-initiative" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-initiative" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;White has the move, which means initiative. He tries to first &lt;em&gt;control the center&lt;/em&gt;, or obtain some &lt;em&gt;positional advantage&lt;/em&gt;, so it&amp;rsquo;s possible for him to keep on &lt;em&gt;harrassing the enemy&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;He only relinquishes the initiative when he gets for some material advantage in return.&lt;/p&gt;</description></item><item><title>5. End Game Strategy</title><link>https://yanghu.github.io/posts/chess-fundamentals/end-game-strategy/</link><pubDate>Sat, 16 Jan 2021 22:26:15 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/chess-fundamentals/end-game-strategy/</guid><description>&lt;h3 class="relative group"&gt;Lichess study of this chapter
+ &lt;div id="lichess-study-of-this-chapter" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lichess-study-of-this-chapter" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+
+
+
+	
+
+
+	
+
+&lt;div class="container"&gt;
+&lt;iframe src="https://lichess.org/study/embed/U2HubwWJ/7qorf25D#1" class="lichess-board" data-url="https://lichess.org/study/embed/U2HubwWJ/7qorf25D#1"&gt;
+ &lt;p&gt;Embedded chessboard from &lt;a href="https://lichess.org/study/embed/U2HubwWJ/7qorf25D#1"&gt;lichess.org&lt;/a&gt;&lt;/p&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;h3 class="relative group"&gt;The sudden attack from a different side
+ &lt;div id="the-sudden-attack-from-a-different-side" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-sudden-attack-from-a-different-side" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;Similar to general theory, the idea is to first attacking on one side, then, with greater
+&lt;strong&gt;mobility&lt;/strong&gt; of the pieces, quickly transfer attack to the other side and break through,
+before the opponent can respond.&lt;/p&gt;</description></item><item><title>Fixing a Camera Crash Cascade: How an LLM Health Check Found a Hidden Frigate Bug</title><link>https://yanghu.github.io/posts/frigate-nanit-crash-fix/</link><pubDate>Fri, 03 Apr 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/frigate-nanit-crash-fix/</guid><description>&lt;p&gt;A daily LLM-powered health check flagged that 8 out of 10 cameras had crash counts in the hundreds.
+The root cause turned out to be two baby monitor cameras, a go2rtc reconnect window, and a vaapi cascade failure — none of which were directly obvious. Here&amp;rsquo;s how we found it and fixed it.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;How the Issue Was Found
+ &lt;div id="how-the-issue-was-found" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#how-the-issue-was-found" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve been building a daily home health agent — a scheduled script that queries all home services (Frigate, Home Assistant, Paperless, the arr stack) and passes the data to a local LLM for analysis. The idea: instead of manually checking dashboards, get a morning summary that flags anything unusual.&lt;/p&gt;</description></item><item><title>Claude Code WSL Notifications with WezTerm Focus</title><link>https://yanghu.github.io/posts/claude-code-wsl-notifications/</link><pubDate>Tue, 24 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/claude-code-wsl-notifications/</guid><description>&lt;p&gt;When running Claude Code inside WSL, it&amp;rsquo;s easy to miss when it&amp;rsquo;s waiting for your input — especially if you&amp;rsquo;ve switched to another window while it works. This post documents the notification system I set up: Windows toast notifications that fire when Claude stops and when it needs permission, with click-to-focus on the exact WezTerm pane.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;How It Works
+ &lt;div id="how-it-works" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#how-it-works" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Claude Code has a hooks system in &lt;code&gt;~/.claude/settings.json&lt;/code&gt;. Two events are useful here:&lt;/p&gt;</description></item><item><title>Switching Frigate to YOLOv9t with OpenVINO on Intel N97</title><link>https://yanghu.github.io/posts/frigate-yolov9t-openvino/</link><pubDate>Thu, 19 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/frigate-yolov9t-openvino/</guid><description>&lt;p&gt;Replacing Frigate&amp;rsquo;s default SSD MobileNet detector with YOLOv9t (tiny) running on the Intel N97&amp;rsquo;s integrated GPU via OpenVINO. Covers model export, correct Frigate config, and a critical gotcha that causes 100% false positives if you get it wrong.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Setup
+ &lt;div id="setup" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#setup" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server:&lt;/strong&gt; Intel N97 (Debian 13), 8 camera streams&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frigate:&lt;/strong&gt; 0.17, running in Docker&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Detector:&lt;/strong&gt; OpenVINO GPU (&lt;code&gt;/dev/dri/renderD128&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Previous model:&lt;/strong&gt; SSD MobileNet v2 (built-in, 300×300)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;New model:&lt;/strong&gt; YOLOv9t ONNX (320×320, 8.3 MB)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;Why YOLOv9t?
+ &lt;div id="why-yolov9t" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#why-yolov9t" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;The default SSD MobileNet v2 bundled with Frigate&amp;rsquo;s OpenVINO image is fast and lightweight, but accuracy suffers on partially occluded objects and objects at the edges of the frame. YOLOv9t (tiny) offers meaningfully better detection quality with a similar computational footprint — at 320×320 input and ~18ms inference on the N97 iGPU, it handles 8 concurrent camera streams comfortably.&lt;/p&gt;</description></item><item><title>Frigate NVR Setup: From Docker to HA Notifications</title><link>https://yanghu.github.io/posts/frigate-setup/</link><pubDate>Wed, 18 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/frigate-setup/</guid><description>&lt;p&gt;Setting up Frigate NVR on a dedicated Debian server (Intel N97) to replace a
+traditional NVR. Covers Docker compose, go2rtc stream config, hardware
+acceleration, HA integration, push notifications, and zone-based alerting.
+Traffic between VLANs goes through the main router (UCG Ultra).&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Hardware &amp;amp; Context
+ &lt;div id="hardware--context" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#hardware--context" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server:&lt;/strong&gt; Intel N97 mini PC (&lt;code&gt;debian.lan&lt;/code&gt;, &lt;code&gt;10.0.10.11&lt;/code&gt;), Debian 13&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cameras:&lt;/strong&gt; 8 Reolink PoE cameras on camera VLAN (&lt;code&gt;10.0.40.0/24&lt;/code&gt;), 2 Nanit
+monitors on IoT VLAN (&lt;code&gt;10.0.20.0/24&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Existing NVR:&lt;/strong&gt; kept running for continuous recording; Frigate handles
+detection and event clips only&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Home Assistant:&lt;/strong&gt; on IoT VLAN (&lt;code&gt;10.0.20.10&lt;/code&gt;), MQTT broker already running&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+&lt;h2 class="relative group"&gt;Storage Design
+ &lt;div id="storage-design" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#storage-design" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Frigate recordings go to a dedicated NAS share — no local NVMe waste for
+surveillance video.&lt;/p&gt;</description></item><item><title>AI-Powered Document Classification with paperless-ai and Ollama</title><link>https://yanghu.github.io/posts/paperless-ai-setup/</link><pubDate>Thu, 12 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/paperless-ai-setup/</guid><description>&lt;p&gt;This post is a complete runbook for integrating AI-powered auto-tagging and classification into &lt;a href="https://docs.paperless-ngx.com/" target="_blank" rel="noreferrer"&gt;paperless-ngx&lt;/a&gt; using &lt;a href="https://github.com/clusterzx/paperless-ai" target="_blank" rel="noreferrer"&gt;paperless-ai&lt;/a&gt; and a locally-running &lt;a href="https://ollama.com/" target="_blank" rel="noreferrer"&gt;Ollama&lt;/a&gt; instance. The setup uses a local LLM to read document text and automatically populate metadata fields — title, document type, tags, correspondent, date, and custom fields.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Hardware and Architecture
+ &lt;div id="hardware-and-architecture" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#hardware-and-architecture" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;NAS (Synology DS1621+, &lt;code&gt;10.0.10.10&lt;/code&gt;)&lt;/strong&gt;: runs paperless-ngx on port 5656&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Desktop PC&lt;/strong&gt;: Windows with WSL2, Docker Desktop, RTX 4090&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Goal&lt;/strong&gt;: AI auto-tagging/classification using a local LLM, zero cloud dependency&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The key architecture decision is a &lt;strong&gt;pull model&lt;/strong&gt;: paperless-ai runs in WSL2 Docker, polls the paperless-ngx API for documents tagged &lt;code&gt;ai-pending&lt;/code&gt;, processes them with Ollama, and writes metadata back. This is the correct approach for a desktop that is not on 24/7 — the NAS holds the queue and the desktop drains it when available.&lt;/p&gt;</description></item><item><title>Organizing Local Lecture Videos in Plex with Proper Metadata</title><link>https://yanghu.github.io/posts/plex-local-media-metadata/</link><pubDate>Thu, 12 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/plex-local-media-metadata/</guid><description>&lt;p&gt;How to structure local lecture/course videos (without an official TMDB/TVDB entry) in Plex as a proper TV Show with seasons, episode titles, and custom descriptions set via the Plex API.&lt;/p&gt;
+&lt;p&gt;The example here is Jonathan Biss&amp;rsquo;s &lt;em&gt;Exploring Beethoven&amp;rsquo;s Piano Sonatas&lt;/em&gt; — a 5-part Coursera course from the Curtis Institute of Music, stored on a Synology NAS.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;The Problem
+ &lt;div id="the-problem" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-problem" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Plex&amp;rsquo;s default scrapers rely on TMDB or TVDB. Local lecture videos with no database entry either show up as a mess of unmatched files, or get incorrectly matched to something unrelated.&lt;/p&gt;</description></item><item><title>AirPrint on Synology NAS via CUPS Docker</title><link>https://yanghu.github.io/posts/airprint-nas-setup/</link><pubDate>Wed, 11 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/airprint-nas-setup/</guid><description>&lt;p&gt;Runbook for setting up AirPrint on a Synology NAS so iOS/macOS devices can
+print to a USB or network printer over the local network. Uses a Docker CUPS
+container and Synology&amp;rsquo;s built-in avahi (mDNS) daemon for service discovery.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Architecture
+ &lt;div id="architecture" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#architecture" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;iPhone
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ mDNS discovery (_ipp._tcp)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Synology avahi-daemon (eth4, port 5353)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ reads service files from /etc/avahi/services/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;CUPS Docker container (host network, port 631)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ generates /etc/avahi/services/AirPrint-*.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ proxies print jobs to printer
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Printer (e.g. socket://10.0.20.50:9100)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Key design decisions:&lt;/p&gt;</description></item><item><title>Paperless-ngx: Migrating a Decade of Documents from Google Drive</title><link>https://yanghu.github.io/posts/paperless-ngx-migration/</link><pubDate>Wed, 11 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/paperless-ngx-migration/</guid><description>&lt;p&gt;Runbook and design journal for migrating ~400 personal documents from a
+folder-based Google Drive system into Paperless-ngx on a Synology NAS.
+Covers taxonomy design, bulk import from Google Takeout, ML classifier
+setup, and ongoing intake workflow.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Problem Statement
+ &lt;div id="problem-statement" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#problem-statement" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;For years my &amp;ldquo;document management&amp;rdquo; was a manually maintained folder tree on
+Google Drive:&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;10 - 文书材料/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 10 - 证件材料/身份证件/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - 移民文档/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - Tax Filing/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 40 - Finance/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 50 - 车辆注册/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 60 - 住房买房/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 80 - Medical/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;20 - 家装住房信息/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;80 - 旅行计划/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This worked well enough for filing but poorly for retrieval. Finding &amp;ldquo;what
+insurance forms did I have in 2022?&amp;rdquo; meant navigating six folders and
+guessing what I named things. Paperless-ngx offers full-text search, OCR,
+and an ML classifier that learns from your own labeling — a meaningfully
+better system for a document archive that spans immigration paperwork, tax
+filings, mortgage docs, and medical records across 10+ years.&lt;/p&gt;</description></item><item><title>Synology Photos → Immich Migration Runbook</title><link>https://yanghu.github.io/posts/synology-to-immich-migration/</link><pubDate>Mon, 09 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/synology-to-immich-migration/</guid><description>&lt;p&gt;Personal runbook for migrating a family photo library from Synology Photos to a
+self-hosted &lt;a href="https://immich.app/" target="_blank" rel="noreferrer"&gt;Immich&lt;/a&gt; instance. Covers bulk upload, Google
+Takeout import, and album reconstruction via the Synology PostgreSQL database.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Setup
+ &lt;div id="setup" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#setup" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Source&lt;/strong&gt;: Synology NAS running Synology Photos (multiple users)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Destination&lt;/strong&gt;: Immich self-hosted on the same NAS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload tool&lt;/strong&gt;: &lt;a href="https://github.com/simulot/immich-go" target="_blank" rel="noreferrer"&gt;immich-go&lt;/a&gt; v0.31+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Client&lt;/strong&gt;: WSL2 on Windows, SSH access to NAS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Album script&lt;/strong&gt;: custom Python (&lt;code&gt;migrate_albums.py&lt;/code&gt;) using Immich REST API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;Phase 1: Photo Uploads
+ &lt;div id="phase-1-photo-uploads" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#phase-1-photo-uploads" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;Strategy
+ &lt;div id="strategy" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#strategy" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;Two sources per user:&lt;/p&gt;</description></item><item><title>Sleep Training for Months 3-4</title><link>https://yanghu.github.io/posts/parenting/sleep-training-baby/</link><pubDate>Thu, 16 May 2024 21:44:33 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/parenting/sleep-training-baby/</guid><description>&lt;h2 class="relative group"&gt;Four Month Sleep Regression
+ &lt;div id="four-month-sleep-regression" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#four-month-sleep-regression" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;New sleep cycle with 5 different stages&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;REM: Dreaming sleep&lt;/li&gt;
+&lt;li&gt;Stage 1: very light/drowsy sleep&lt;/li&gt;
+&lt;li&gt;Stage 2: Light sleep&lt;/li&gt;
+&lt;li&gt;Stage 3/4: Deep restorative sleep&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Light sleep almost every hour or two throughout the night. They need to learn
+how to go back to sleep after the light/wake stage.&lt;/p&gt;
+&lt;p&gt;The 7-step guide&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Fill the tank&lt;/li&gt;
+&lt;li&gt;Check the engine&lt;/li&gt;
+&lt;li&gt;Set the cruise control&lt;/li&gt;
+&lt;li&gt;Top off the tank&lt;/li&gt;
+&lt;li&gt;Hit the brakes&lt;/li&gt;
+&lt;li&gt;Plan your rest stops&lt;/li&gt;
+&lt;li&gt;Unload the baggage&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 class="relative group"&gt;1. Fill the tank
+ &lt;div id="1-fill-the-tank" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-fill-the-tank" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;blockquote&gt;&lt;p&gt;Maintaining adequate feedings during the day.&lt;/p&gt;</description></item><item><title>Sleep Training for the Toddler</title><link>https://yanghu.github.io/posts/parenting/sleep-training-toddler/</link><pubDate>Sat, 11 May 2024 22:41:36 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/parenting/sleep-training-toddler/</guid><description>&lt;h2 class="relative group"&gt;Prepare the little one
+ &lt;div id="prepare-the-little-one" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#prepare-the-little-one" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;B-E-S-T
+ &lt;div id="b-e-s-t" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#b-e-s-t" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;B - Building confidence: talk about &amp;ldquo;good&amp;rdquo; things about sleep. 可以表扬他们睡
+的很好，或者跟他们说自己睡的好，变强壮了，etc. 产生正面影响&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;E - expectations: 明确表达你对他们的期望，希望他们做什么。 &amp;ldquo;I&amp;rsquo;m going to give
+you lots of kisses, and you&amp;rsquo;re going to lay down on your bed, close your eyes
+and have a good sleep. &amp;quot;&lt;/p&gt;</description></item><item><title>Neovim Workflow</title><link>https://yanghu.github.io/posts/coding/neovim-workflow/</link><pubDate>Tue, 07 May 2024 12:58:05 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/coding/neovim-workflow/</guid><description>&lt;p&gt;Neovim comes with lots of useful plugins, and built-in features, compared to
+Vim. It&amp;rsquo;s lua configs is also much more readable and powerful compared to Vim.
+Here&amp;rsquo;s some useful tips for coding in Nvim.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Searching(files, text, diagnostics, help)
+ &lt;div id="searchingfiles-text-diagnostics-help" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#searchingfiles-text-diagnostics-help" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Similar to techniques mentioned in
+&lt;a href="https://yanghu.github.io/posts/search-in-vim/" &gt;search-in-vim&lt;/a&gt;, we can search for text inside
+files, or looking for files by filtering filenames. In Neovim, we use &lt;code&gt;fzf-lua&lt;/code&gt;
+which is very similar to &lt;code&gt;fzf.vim&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Search in Vim</title><link>https://yanghu.github.io/posts/search-in-vim/</link><pubDate>Sun, 09 May 2021 11:33:39 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/search-in-vim/</guid><description>&lt;p&gt;搜索是开发中最常用也是最重要的操作之一. Vim提供了非常高效和方便的搜索功能.
+这篇笔记记录了一些常用的搜索命令,例子以及自定义的key mapping&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用ripgrep搜索文件内容 (&lt;code&gt;:Rg2&lt;/code&gt; or &lt;code&gt;,gg&lt;/code&gt;, &lt;code&gt;,gw&lt;/code&gt;/&lt;code&gt;,gW&lt;/code&gt; )&lt;/li&gt;
+&lt;li&gt;使用git-grep搜索git branch/commit, 以及使用fzf显示git grep的结果 (&lt;code&gt;:Ggrep&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;使用fzf/coc list搜索当前文件/buffers中的lines, 实现快速定位/跳转&lt;/li&gt;
+&lt;li&gt;使用quickfix lists快速访问上述搜索的结果,
+以及利用&lt;code&gt;:cdo&lt;/code&gt;/&lt;code&gt;:cfdo&lt;/code&gt;等命令对结果进行批量操作.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;General searching inside files
+ &lt;div id="general-searching-inside-files" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#general-searching-inside-files" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;Ripgrep with fzf
+ &lt;div id="ripgrep-with-fzf" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#ripgrep-with-fzf" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;fzf.vim&lt;/code&gt; provides a &lt;code&gt;:Rg&lt;/code&gt; command to call ripgrep and search the current
+directory. However, a more useful variant is built to support specify path and
+pass other parameters to ripgrep, I used this snippet and mapped this to
+shortcut &lt;code&gt;&amp;lt;Leader&amp;gt;gg&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Vim Tips</title><link>https://yanghu.github.io/posts/vim-tips/</link><pubDate>Thu, 15 Apr 2021 00:01:16 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/vim-tips/</guid><description>&lt;h2 class="relative group"&gt;Search and work with many files
+ &lt;div id="search-and-work-with-many-files" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#search-and-work-with-many-files" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;Searching
+ &lt;div id="searching" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#searching" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;For searching words / symbols within files, see &lt;a href="https://yanghu.github.io/posts/search-in-vim/" &gt;search-in-vim&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To quick find and open files by filename, I use &lt;code&gt;fzf&lt;/code&gt; and &lt;code&gt;coc-list&lt;/code&gt;, and the
+follwing key bindings.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;General search&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;To open files in the &lt;em&gt;working directory&lt;/em&gt; ( not current file/buffer dir), use
+&lt;code&gt;:Files&lt;/code&gt; or &lt;code&gt;,lc&lt;/code&gt; ( &lt;em&gt;l&lt;/em&gt;ist &lt;em&gt;c&lt;/em&gt;urrent)&lt;/p&gt;</description></item><item><title>Keyboard Pcb Design</title><link>https://yanghu.github.io/posts/keyboard-pcb-design/</link><pubDate>Sun, 11 Apr 2021 18:37:25 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/keyboard-pcb-design/</guid><description>&lt;h1 class="relative group"&gt;Feature highlights
+ &lt;div id="feature-highlights" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#feature-highlights" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;Initially, I wanted to build a split board. However, since I already have a
+split (crkbd), making a Arteus/Reviuge-like board makes more sense.&lt;/p&gt;
+&lt;p&gt;The design is using aggressive stagger (same column stagger like my split
+design), and 15 degree angle of columns.&lt;/p&gt;
+&lt;p&gt;Other features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OLED status display&lt;/li&gt;
+&lt;li&gt;RGB underglow&lt;/li&gt;
+&lt;li&gt;Audio&lt;/li&gt;
+&lt;li&gt;Encoder&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 class="relative group"&gt;Design considerations for STM32
+ &lt;div id="design-considerations-for-stm32" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#design-considerations-for-stm32" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;I&amp;rsquo;ll be using F411 due to lack of F072 stock.&lt;/p&gt;</description></item></channel></rss>

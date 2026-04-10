@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Google-Drive on Yang's Notes</title><link>https://yanghu.github.io/tags/google-drive/</link><description>Recent content in Google-Drive on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Wed, 11 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/tags/google-drive/index.xml" rel="self" type="application/rss+xml"/><item><title>Paperless-ngx: Migrating a Decade of Documents from Google Drive</title><link>https://yanghu.github.io/posts/paperless-ngx-migration/</link><pubDate>Wed, 11 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/paperless-ngx-migration/</guid><description>&lt;p&gt;Runbook and design journal for migrating ~400 personal documents from a
+folder-based Google Drive system into Paperless-ngx on a Synology NAS.
+Covers taxonomy design, bulk import from Google Takeout, ML classifier
+setup, and ongoing intake workflow.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Problem Statement
+ &lt;div id="problem-statement" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#problem-statement" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;For years my &amp;ldquo;document management&amp;rdquo; was a manually maintained folder tree on
+Google Drive:&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;10 - 文书材料/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 10 - 证件材料/身份证件/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - 移民文档/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - Tax Filing/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 40 - Finance/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 50 - 车辆注册/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 60 - 住房买房/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 80 - Medical/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;20 - 家装住房信息/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;80 - 旅行计划/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This worked well enough for filing but poorly for retrieval. Finding &amp;ldquo;what
+insurance forms did I have in 2022?&amp;rdquo; meant navigating six folders and
+guessing what I named things. Paperless-ngx offers full-text search, OCR,
+and an ML classifier that learns from your own labeling — a meaningfully
+better system for a document archive that spans immigration paperwork, tax
+filings, mortgage docs, and medical records across 10+ years.&lt;/p&gt;</description></item></channel></rss>

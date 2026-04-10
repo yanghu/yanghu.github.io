@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Keyboard Design on Yang's Notes</title><link>https://yanghu.github.io/zh/categories/keyboard-design/</link><description>Recent content in Keyboard Design on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Sun, 11 Apr 2021 18:37:25 -0700</lastBuildDate><atom:link href="https://yanghu.github.io/zh/categories/keyboard-design/index.xml" rel="self" type="application/rss+xml"/><item><title>键盘 PCB 设计</title><link>https://yanghu.github.io/zh/posts/keyboard-pcb-design/</link><pubDate>Sun, 11 Apr 2021 18:37:25 -0700</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/keyboard-pcb-design/</guid><description>&lt;h1 class="relative group"&gt;功能亮点
+ &lt;div id="功能亮点" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8a%9f%e8%83%bd%e4%ba%ae%e7%82%b9" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;最初我想做一块分体键盘，但由于已经有了一块分体板（crkbd），做一块类似 Arteus/Reviunge 的一体板更有意义。&lt;/p&gt;
+&lt;p&gt;设计采用激进式行列错位（与我的分体设计相同的列错位），列方向倾斜 15 度。&lt;/p&gt;
+&lt;p&gt;其他功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OLED 状态显示&lt;/li&gt;
+&lt;li&gt;RGB 底部灯&lt;/li&gt;
+&lt;li&gt;音频&lt;/li&gt;
+&lt;li&gt;编码器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 class="relative group"&gt;STM32 设计考量
+ &lt;div id="stm32-设计考量" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#stm32-%e8%ae%be%e8%ae%a1%e8%80%83%e9%87%8f" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h1&gt;
+&lt;p&gt;由于 F072 缺货，将使用 F411。&lt;/p&gt;
+&lt;p&gt;在 QMK 中配置 STM 芯片的技巧：https://discord.com/channels/440868230475677696/440870965728116754/839978277489082370&lt;/p&gt;
+&lt;p&gt;查找使用特定芯片的键盘的代码片段：&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; % git grep &amp;#39;MCU\s*=\s*STM32F411&amp;#39; keyboards/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/handwired/onekey/blackpill_f411/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/handwired/onekey/blackpill_f411_tinyuf2/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/handwired/pill60/blackpill_f411/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/handwired/riblee_f411/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/matrix/m20add/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/matrix/noah/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/tkw/grandiceps/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/tkw/stoutgat/v2/f411/rules.mk:MCU = STM32F411
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; keyboards/zvecr/zv48/f411/rules.mk:MCU = STM32F411&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 class="relative group"&gt;外设的 DMA 通道
+ &lt;div id="外设的-dma-通道" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%a4%96%e8%ae%be%e7%9a%84-dma-%e9%80%9a%e9%81%93" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I2C、SPI、ADC、DAC 等外设使用 DMA 通道。PWM 也可以使用 DMA 以获得更好的性能，例如用于 LED 驱动器。STM32F072 有 7 个 DMA 通道（详情见参考手册）。选择外设时需要谨慎，避免 DMA 通道冲突。&lt;/p&gt;</description></item></channel></rss>

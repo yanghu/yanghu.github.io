@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Plex on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/plex/</link><description>Recent content in Plex on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Thu, 12 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/plex/index.xml" rel="self" type="application/rss+xml"/><item><title>在 Plex 中整理本地讲座视频并添加 Metadata</title><link>https://yanghu.github.io/zh/posts/plex-local-media-metadata/</link><pubDate>Thu, 12 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/plex-local-media-metadata/</guid><description>&lt;p&gt;如何将本地讲座/课程视频（没有 TMDB/TVDB 收录的）在 Plex 中整理成结构清晰的电视节目，并通过 Plex API 写入自定义描述文字。&lt;/p&gt;
+&lt;p&gt;示例是 Jonathan Biss 的 &lt;em&gt;Exploring Beethoven&amp;rsquo;s Piano Sonatas&lt;/em&gt;——Curtis 音乐学院与 Coursera 合作的 5 部分课程，存储在 Synology NAS 上。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;问题
+ &lt;div id="问题" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%97%ae%e9%a2%98" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Plex 默认的 metadata 爬虫依赖 TMDB 或 TVDB。没有收录的本地讲座视频要么显示成一堆无封面的乱列表，要么被错误匹配到不相关的节目。&lt;/p&gt;
+&lt;p&gt;解决方案：将课程当作**电视节目（TV Show）**处理，使用 Plex 的 &lt;strong&gt;Personal Media Shows&lt;/strong&gt; 代理，再通过 Plex API 推送自定义 metadata。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;第一步：按 Season/Episode 结构整理文件
+ &lt;div id="第一步按-seasonepisode-结构整理文件" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e6%8c%89-seasonepisode-%e7%bb%93%e6%9e%84%e6%95%b4%e7%90%86%e6%96%87%e4%bb%b6" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Plex 的 TV Show 扫描器要求文件名包含 &lt;code&gt;SxxExx&lt;/code&gt;：&lt;/p&gt;</description></item></channel></rss>

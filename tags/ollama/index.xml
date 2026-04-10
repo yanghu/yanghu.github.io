@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ollama on Yang's Notes</title><link>https://yanghu.github.io/tags/ollama/</link><description>Recent content in Ollama on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Thu, 12 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/tags/ollama/index.xml" rel="self" type="application/rss+xml"/><item><title>AI-Powered Document Classification with paperless-ai and Ollama</title><link>https://yanghu.github.io/posts/paperless-ai-setup/</link><pubDate>Thu, 12 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/paperless-ai-setup/</guid><description>&lt;p&gt;This post is a complete runbook for integrating AI-powered auto-tagging and classification into &lt;a href="https://docs.paperless-ngx.com/" target="_blank" rel="noreferrer"&gt;paperless-ngx&lt;/a&gt; using &lt;a href="https://github.com/clusterzx/paperless-ai" target="_blank" rel="noreferrer"&gt;paperless-ai&lt;/a&gt; and a locally-running &lt;a href="https://ollama.com/" target="_blank" rel="noreferrer"&gt;Ollama&lt;/a&gt; instance. The setup uses a local LLM to read document text and automatically populate metadata fields — title, document type, tags, correspondent, date, and custom fields.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Hardware and Architecture
+ &lt;div id="hardware-and-architecture" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#hardware-and-architecture" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;NAS (Synology DS1621+, &lt;code&gt;10.0.10.10&lt;/code&gt;)&lt;/strong&gt;: runs paperless-ngx on port 5656&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Desktop PC&lt;/strong&gt;: Windows with WSL2, Docker Desktop, RTX 4090&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Goal&lt;/strong&gt;: AI auto-tagging/classification using a local LLM, zero cloud dependency&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The key architecture decision is a &lt;strong&gt;pull model&lt;/strong&gt;: paperless-ai runs in WSL2 Docker, polls the paperless-ngx API for documents tagged &lt;code&gt;ai-pending&lt;/code&gt;, processes them with Ollama, and writes metadata back. This is the correct approach for a desktop that is not on 24/7 — the NAS holds the queue and the desktop drains it when available.&lt;/p&gt;</description></item></channel></rss>

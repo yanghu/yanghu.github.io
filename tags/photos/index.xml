@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Photos on Yang's Notes</title><link>https://yanghu.github.io/tags/photos/</link><description>Recent content in Photos on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Mon, 09 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/tags/photos/index.xml" rel="self" type="application/rss+xml"/><item><title>Synology Photos → Immich Migration Runbook</title><link>https://yanghu.github.io/posts/synology-to-immich-migration/</link><pubDate>Mon, 09 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/synology-to-immich-migration/</guid><description>&lt;p&gt;Personal runbook for migrating a family photo library from Synology Photos to a
+self-hosted &lt;a href="https://immich.app/" target="_blank" rel="noreferrer"&gt;Immich&lt;/a&gt; instance. Covers bulk upload, Google
+Takeout import, and album reconstruction via the Synology PostgreSQL database.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Setup
+ &lt;div id="setup" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#setup" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Source&lt;/strong&gt;: Synology NAS running Synology Photos (multiple users)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Destination&lt;/strong&gt;: Immich self-hosted on the same NAS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload tool&lt;/strong&gt;: &lt;a href="https://github.com/simulot/immich-go" target="_blank" rel="noreferrer"&gt;immich-go&lt;/a&gt; v0.31+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Client&lt;/strong&gt;: WSL2 on Windows, SSH access to NAS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Album script&lt;/strong&gt;: custom Python (&lt;code&gt;migrate_albums.py&lt;/code&gt;) using Immich REST API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;Phase 1: Photo Uploads
+ &lt;div id="phase-1-photo-uploads" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#phase-1-photo-uploads" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;Strategy
+ &lt;div id="strategy" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#strategy" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;Two sources per user:&lt;/p&gt;</description></item></channel></rss>

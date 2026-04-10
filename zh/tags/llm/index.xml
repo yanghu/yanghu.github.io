@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Llm on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/llm/</link><description>Recent content in Llm on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Thu, 12 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/llm/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 paperless-ai 与 Ollama 为 paperless-ngx 添加 AI 文档分类功能</title><link>https://yanghu.github.io/zh/posts/paperless-ai-setup/</link><pubDate>Thu, 12 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/paperless-ai-setup/</guid><description>&lt;p&gt;本文是一份完整的操作手册，介绍如何通过 &lt;a href="https://github.com/clusterzx/paperless-ai" target="_blank" rel="noreferrer"&gt;paperless-ai&lt;/a&gt; 和本地运行的 &lt;a href="https://ollama.com/" target="_blank" rel="noreferrer"&gt;Ollama&lt;/a&gt; 为 &lt;a href="https://docs.paperless-ngx.com/" target="_blank" rel="noreferrer"&gt;paperless-ngx&lt;/a&gt; 集成 AI 自动标签和分类功能。整套方案使用本地大语言模型读取文档文本，自动填充元数据字段——包括标题、文档类型、标签、联系人、日期以及自定义字段。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;硬件与架构
+ &lt;div id="硬件与架构" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%a1%ac%e4%bb%b6%e4%b8%8e%e6%9e%b6%e6%9e%84" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;NAS（群晖 DS1621+，&lt;code&gt;10.0.10.10&lt;/code&gt;）&lt;/strong&gt;：在 5656 端口运行 paperless-ngx&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;台式 PC&lt;/strong&gt;：Windows，安装了 WSL2、Docker Desktop，配备 RTX 4090&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;目标&lt;/strong&gt;：使用本地 LLM 实现 AI 自动打标/分类，零云端依赖&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;核心架构决策是&lt;strong&gt;拉取模式（pull model）&lt;/strong&gt;：paperless-ai 运行在 WSL2 的 Docker 容器中，轮询 paperless-ngx API 寻找带有 &lt;code&gt;ai-pending&lt;/code&gt; 标签的文档，调用 Ollama 处理后将元数据写回。对于不是 24 小时开机的台式机而言，这是最正确的方案——NAS 保存待处理队列，台式机开机后自动消费。&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;paperless-ngx (NAS)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↑ ↓ (REST API)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; paperless-ai (WSL2 Docker)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↑ ↓ (HTTP)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Ollama (Windows 原生)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↑
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; RTX 4090 (GPU)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Ollama 以原生方式运行在 Windows 上（而非 WSL 内），以获得最佳 GPU 访问性能。在 WSL2 的 Docker 容器内，通过特殊主机名 &lt;code&gt;host.docker.internal&lt;/code&gt; 访问 Ollama。&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Frigate on Yang's Notes</title><link>https://yanghu.github.io/tags/frigate/</link><description>Recent content in Frigate on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Fri, 03 Apr 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/tags/frigate/index.xml" rel="self" type="application/rss+xml"/><item><title>Fixing a Camera Crash Cascade: How an LLM Health Check Found a Hidden Frigate Bug</title><link>https://yanghu.github.io/posts/frigate-nanit-crash-fix/</link><pubDate>Fri, 03 Apr 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/frigate-nanit-crash-fix/</guid><description>&lt;p&gt;A daily LLM-powered health check flagged that 8 out of 10 cameras had crash counts in the hundreds.
+The root cause turned out to be two baby monitor cameras, a go2rtc reconnect window, and a vaapi cascade failure — none of which were directly obvious. Here&amp;rsquo;s how we found it and fixed it.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;How the Issue Was Found
+ &lt;div id="how-the-issue-was-found" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#how-the-issue-was-found" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve been building a daily home health agent — a scheduled script that queries all home services (Frigate, Home Assistant, Paperless, the arr stack) and passes the data to a local LLM for analysis. The idea: instead of manually checking dashboards, get a morning summary that flags anything unusual.&lt;/p&gt;</description></item><item><title>Switching Frigate to YOLOv9t with OpenVINO on Intel N97</title><link>https://yanghu.github.io/posts/frigate-yolov9t-openvino/</link><pubDate>Thu, 19 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/frigate-yolov9t-openvino/</guid><description>&lt;p&gt;Replacing Frigate&amp;rsquo;s default SSD MobileNet detector with YOLOv9t (tiny) running on the Intel N97&amp;rsquo;s integrated GPU via OpenVINO. Covers model export, correct Frigate config, and a critical gotcha that causes 100% false positives if you get it wrong.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Setup
+ &lt;div id="setup" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#setup" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server:&lt;/strong&gt; Intel N97 (Debian 13), 8 camera streams&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frigate:&lt;/strong&gt; 0.17, running in Docker&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Detector:&lt;/strong&gt; OpenVINO GPU (&lt;code&gt;/dev/dri/renderD128&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Previous model:&lt;/strong&gt; SSD MobileNet v2 (built-in, 300×300)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;New model:&lt;/strong&gt; YOLOv9t ONNX (320×320, 8.3 MB)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;Why YOLOv9t?
+ &lt;div id="why-yolov9t" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#why-yolov9t" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;The default SSD MobileNet v2 bundled with Frigate&amp;rsquo;s OpenVINO image is fast and lightweight, but accuracy suffers on partially occluded objects and objects at the edges of the frame. YOLOv9t (tiny) offers meaningfully better detection quality with a similar computational footprint — at 320×320 input and ~18ms inference on the N97 iGPU, it handles 8 concurrent camera streams comfortably.&lt;/p&gt;</description></item><item><title>Frigate NVR Setup: From Docker to HA Notifications</title><link>https://yanghu.github.io/posts/frigate-setup/</link><pubDate>Wed, 18 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/frigate-setup/</guid><description>&lt;p&gt;Setting up Frigate NVR on a dedicated Debian server (Intel N97) to replace a
+traditional NVR. Covers Docker compose, go2rtc stream config, hardware
+acceleration, HA integration, push notifications, and zone-based alerting.
+Traffic between VLANs goes through the main router (UCG Ultra).&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Hardware &amp;amp; Context
+ &lt;div id="hardware--context" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#hardware--context" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server:&lt;/strong&gt; Intel N97 mini PC (&lt;code&gt;debian.lan&lt;/code&gt;, &lt;code&gt;10.0.10.11&lt;/code&gt;), Debian 13&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cameras:&lt;/strong&gt; 8 Reolink PoE cameras on camera VLAN (&lt;code&gt;10.0.40.0/24&lt;/code&gt;), 2 Nanit
+monitors on IoT VLAN (&lt;code&gt;10.0.20.0/24&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Existing NVR:&lt;/strong&gt; kept running for continuous recording; Frigate handles
+detection and event clips only&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Home Assistant:&lt;/strong&gt; on IoT VLAN (&lt;code&gt;10.0.20.10&lt;/code&gt;), MQTT broker already running&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+&lt;h2 class="relative group"&gt;Storage Design
+ &lt;div id="storage-design" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#storage-design" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Frigate recordings go to a dedicated NAS share — no local NVMe waste for
+surveillance video.&lt;/p&gt;</description></item></channel></rss>

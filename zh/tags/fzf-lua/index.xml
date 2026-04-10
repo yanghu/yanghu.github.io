@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fzf-Lua on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/fzf-lua/</link><description>Recent content in Fzf-Lua on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Mon, 06 Apr 2026 22:30:00 +0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/fzf-lua/index.xml" rel="self" type="application/rss+xml"/><item><title>与 AI 的 Neovim 现代化折腾纪实 (2026版)</title><link>https://yanghu.github.io/zh/posts/coding/neovim-chat-summary-2026/</link><pubDate>Mon, 06 Apr 2026 22:30:00 +0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/coding/neovim-chat-summary-2026/</guid><description>&lt;p&gt;太久没写代码，重拾 Neovim 时发现不仅肌肉记忆有些生疏，而且因为插件生态的“疯狂内卷”，原来的配置报出了一连串的错误。于是和 AI 结结实实地“折腾”了一番，完成了一次 Neovim 架构的现代化升级。&lt;/p&gt;
+&lt;p&gt;这篇博客是我和 AI 聊天复盘的摘要记录，方便以后如果又断档了，可以快速接上思路。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;1. 认知转换：从“极客生存手册”到“现代 IDE”
+ &lt;div id="1-认知转换从极客生存手册到现代-ide" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-%e8%ae%a4%e7%9f%a5%e8%bd%ac%e6%8d%a2%e4%bb%8e%e6%9e%81%e5%ae%a2%e7%94%9f%e5%ad%98%e6%89%8b%e5%86%8c%e5%88%b0%e7%8e%b0%e4%bb%a3-ide" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;在重新梳理快捷键和工作流时，AI 敏锐地指出我之前的旧文档思维还停留在原生 Vim 时代。而我现在的配置，其实已经是一个极其现代化的 IDE，工具其实在主动配合直觉：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;搜索与查找&lt;/strong&gt;：从敲命令退化到了全屏互动（全面拥抱 &lt;code&gt;fzf-lua&lt;/code&gt;，支持代码预览和悬浮窗）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;精准跳转&lt;/strong&gt;：不再依赖盲按 &lt;code&gt;j/k&lt;/code&gt; 或者原生的标记，而是依靠视觉反馈的 &lt;code&gt;Leap&lt;/code&gt; (&lt;code&gt;s&lt;/code&gt; 瞬移) 和 &lt;code&gt;Flash&lt;/code&gt; (&lt;code&gt;S&lt;/code&gt; 语法树节点选择)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多文件管理&lt;/strong&gt;：用 &lt;code&gt;Grapple&lt;/code&gt; (&lt;code&gt;&amp;lt;leader&amp;gt;ma&lt;/code&gt; 打标, &lt;code&gt;&amp;lt;leader&amp;gt;n&lt;/code&gt; 轮切) 替代了需要心智负担的数字 Buffer 管理，只把核心文件钉在书签里。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;大纲与排错&lt;/strong&gt;：用 &lt;code&gt;Trouble&lt;/code&gt; 和 &lt;code&gt;Aerial&lt;/code&gt; 侧边栏替代了底部的纯文本 Quickfix 列表。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;2. 踩坑纪实：Treesitter 0.10+ 断代大迁移
+ &lt;div id="2-踩坑纪实treesitter-010-断代大迁移" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-%e8%b8%a9%e5%9d%91%e7%ba%aa%e5%ae%9etreesitter-010-%e6%96%ad%e4%bb%a3%e5%a4%a7%e8%bf%81%e7%a7%bb" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;这次遇到了 Neovim 社区目前最大的一个“断层更新”巨坑。因为我使用了 Neovim 0.12.0，核心 API 的变化导致了连环爆炸：&lt;/p&gt;</description></item></channel></rss>

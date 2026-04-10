@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Photos on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/photos/</link><description>Recent content in Photos on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Mon, 09 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/photos/index.xml" rel="self" type="application/rss+xml"/><item><title>Synology Photos 迁移到 Immich 操作手册</title><link>https://yanghu.github.io/zh/posts/synology-to-immich-migration/</link><pubDate>Mon, 09 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/synology-to-immich-migration/</guid><description>&lt;p&gt;将家庭相册从 Synology Photos 迁移到自托管 &lt;a href="https://immich.app/" target="_blank" rel="noreferrer"&gt;Immich&lt;/a&gt; 实例的个人操作手册。
+涵盖批量上传、Google Takeout 导入，以及通过 Synology PostgreSQL 数据库重建相册。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;环境说明
+ &lt;div id="环境说明" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%8e%af%e5%a2%83%e8%af%b4%e6%98%8e" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;来源&lt;/strong&gt;：运行 Synology Photos 的 Synology NAS（多用户）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;目标&lt;/strong&gt;：同一 NAS 上自托管的 Immich&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;上传工具&lt;/strong&gt;：&lt;a href="https://github.com/simulot/immich-go" target="_blank" rel="noreferrer"&gt;immich-go&lt;/a&gt; v0.31+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;客户端&lt;/strong&gt;：Windows 上的 WSL2，SSH 访问 NAS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;相册脚本&lt;/strong&gt;：自定义 Python（&lt;code&gt;migrate_albums.py&lt;/code&gt;），使用 Immich REST API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;第一阶段：照片上传
+ &lt;div id="第一阶段照片上传" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ac%ac%e4%b8%80%e9%98%b6%e6%ae%b5%e7%85%a7%e7%89%87%e4%b8%8a%e4%bc%a0" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;策略
+ &lt;div id="策略" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ad%96%e7%95%a5" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;每位用户有两个来源：&lt;/p&gt;</description></item></channel></rss>

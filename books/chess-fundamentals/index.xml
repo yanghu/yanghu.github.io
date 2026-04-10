@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Chess Fundamentals on Yang's Notes</title><link>https://yanghu.github.io/books/chess-fundamentals/</link><description>Recent content in Chess Fundamentals on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Sat, 16 Jan 2021 22:26:15 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/books/chess-fundamentals/index.xml" rel="self" type="application/rss+xml"/><item><title>1. First Principles: Endings, Middle-game and Openings</title><link>https://yanghu.github.io/posts/chess-fundamentals/first-principles/</link><pubDate>Sat, 16 Jan 2021 16:16:44 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/chess-fundamentals/first-principles/</guid><description>&lt;h3 class="relative group"&gt;Single pawn
+ &lt;div id="single-pawn" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#single-pawn" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;em&gt;King&lt;/em&gt; should be in front of his Pawn, with at least one intervening square.&lt;/li&gt;
+&lt;li&gt;Advance the King as far as possible with the safety of the pawn, and never to advance the Pawn until it is essential to its own safety.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 class="relative group"&gt;Other Pawn Endings
+ &lt;div id="other-pawn-endings" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#other-pawn-endings" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;div class="admonition admonition-note"&gt;
+ &lt;div class="admonition-header"&gt;
+ &lt;span&gt;ℹ️&lt;/span&gt;
+ &lt;span&gt;Don&amp;#39;t push pawns prematurely&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="admonition-content"&gt;
+ don&amp;rsquo;t push the pawn prematurely, which may send it to the opponent&amp;rsquo;s King, and you can&amp;rsquo;t protect it.
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;In this position, if white pushes the f-pawn, the game draws because &lt;code&gt;... Kf7&lt;/code&gt;. White is better to move his King and force the Black king to the corner, with help from &lt;code&gt;g6&lt;/code&gt; push, controlling the f7 square .&lt;/p&gt;</description></item><item><title>4. General Theory</title><link>https://yanghu.github.io/posts/chess-fundamentals/general-theory/</link><pubDate>Sat, 16 Jan 2021 22:12:23 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/chess-fundamentals/general-theory/</guid><description>&lt;h3 class="relative group"&gt;Lichess study of this chapter
+ &lt;div id="lichess-study-of-this-chapter" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lichess-study-of-this-chapter" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+
+
+
+	
+
+
+	
+
+&lt;div class="container"&gt;
+&lt;iframe src="https://lichess.org/study/embed/7do6h1dt/uy7WjIOf#0" class="lichess-board" data-url="https://lichess.org/study/embed/7do6h1dt/uy7WjIOf#0"&gt;
+ &lt;p&gt;Embedded chessboard from &lt;a href="https://lichess.org/study/embed/7do6h1dt/uy7WjIOf#0"&gt;lichess.org&lt;/a&gt;&lt;/p&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;h3 class="relative group"&gt;The initiative
+ &lt;div id="the-initiative" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-initiative" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;White has the move, which means initiative. He tries to first &lt;em&gt;control the center&lt;/em&gt;, or obtain some &lt;em&gt;positional advantage&lt;/em&gt;, so it&amp;rsquo;s possible for him to keep on &lt;em&gt;harrassing the enemy&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;He only relinquishes the initiative when he gets for some material advantage in return.&lt;/p&gt;</description></item><item><title>5. End Game Strategy</title><link>https://yanghu.github.io/posts/chess-fundamentals/end-game-strategy/</link><pubDate>Sat, 16 Jan 2021 22:26:15 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/chess-fundamentals/end-game-strategy/</guid><description>&lt;h3 class="relative group"&gt;Lichess study of this chapter
+ &lt;div id="lichess-study-of-this-chapter" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lichess-study-of-this-chapter" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+
+
+
+	
+
+
+	
+
+&lt;div class="container"&gt;
+&lt;iframe src="https://lichess.org/study/embed/U2HubwWJ/7qorf25D#1" class="lichess-board" data-url="https://lichess.org/study/embed/U2HubwWJ/7qorf25D#1"&gt;
+ &lt;p&gt;Embedded chessboard from &lt;a href="https://lichess.org/study/embed/U2HubwWJ/7qorf25D#1"&gt;lichess.org&lt;/a&gt;&lt;/p&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;h3 class="relative group"&gt;The sudden attack from a different side
+ &lt;div id="the-sudden-attack-from-a-different-side" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-sudden-attack-from-a-different-side" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;Similar to general theory, the idea is to first attacking on one side, then, with greater
+&lt;strong&gt;mobility&lt;/strong&gt; of the pieces, quickly transfer attack to the other side and break through,
+before the opponent can respond.&lt;/p&gt;</description></item></channel></rss>

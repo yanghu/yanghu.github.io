@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Self-Hosted on Yang's Notes</title><link>https://yanghu.github.io/tags/self-hosted/</link><description>Recent content in Self-Hosted on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Fri, 03 Apr 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/tags/self-hosted/index.xml" rel="self" type="application/rss+xml"/><item><title>Fixing a Camera Crash Cascade: How an LLM Health Check Found a Hidden Frigate Bug</title><link>https://yanghu.github.io/posts/frigate-nanit-crash-fix/</link><pubDate>Fri, 03 Apr 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/frigate-nanit-crash-fix/</guid><description>&lt;p&gt;A daily LLM-powered health check flagged that 8 out of 10 cameras had crash counts in the hundreds.
+The root cause turned out to be two baby monitor cameras, a go2rtc reconnect window, and a vaapi cascade failure — none of which were directly obvious. Here&amp;rsquo;s how we found it and fixed it.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;How the Issue Was Found
+ &lt;div id="how-the-issue-was-found" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#how-the-issue-was-found" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ve been building a daily home health agent — a scheduled script that queries all home services (Frigate, Home Assistant, Paperless, the arr stack) and passes the data to a local LLM for analysis. The idea: instead of manually checking dashboards, get a morning summary that flags anything unusual.&lt;/p&gt;</description></item><item><title>Switching Frigate to YOLOv9t with OpenVINO on Intel N97</title><link>https://yanghu.github.io/posts/frigate-yolov9t-openvino/</link><pubDate>Thu, 19 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/frigate-yolov9t-openvino/</guid><description>&lt;p&gt;Replacing Frigate&amp;rsquo;s default SSD MobileNet detector with YOLOv9t (tiny) running on the Intel N97&amp;rsquo;s integrated GPU via OpenVINO. Covers model export, correct Frigate config, and a critical gotcha that causes 100% false positives if you get it wrong.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Setup
+ &lt;div id="setup" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#setup" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server:&lt;/strong&gt; Intel N97 (Debian 13), 8 camera streams&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frigate:&lt;/strong&gt; 0.17, running in Docker&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Detector:&lt;/strong&gt; OpenVINO GPU (&lt;code&gt;/dev/dri/renderD128&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Previous model:&lt;/strong&gt; SSD MobileNet v2 (built-in, 300×300)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;New model:&lt;/strong&gt; YOLOv9t ONNX (320×320, 8.3 MB)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;Why YOLOv9t?
+ &lt;div id="why-yolov9t" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#why-yolov9t" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;The default SSD MobileNet v2 bundled with Frigate&amp;rsquo;s OpenVINO image is fast and lightweight, but accuracy suffers on partially occluded objects and objects at the edges of the frame. YOLOv9t (tiny) offers meaningfully better detection quality with a similar computational footprint — at 320×320 input and ~18ms inference on the N97 iGPU, it handles 8 concurrent camera streams comfortably.&lt;/p&gt;</description></item><item><title>AI-Powered Document Classification with paperless-ai and Ollama</title><link>https://yanghu.github.io/posts/paperless-ai-setup/</link><pubDate>Thu, 12 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/paperless-ai-setup/</guid><description>&lt;p&gt;This post is a complete runbook for integrating AI-powered auto-tagging and classification into &lt;a href="https://docs.paperless-ngx.com/" target="_blank" rel="noreferrer"&gt;paperless-ngx&lt;/a&gt; using &lt;a href="https://github.com/clusterzx/paperless-ai" target="_blank" rel="noreferrer"&gt;paperless-ai&lt;/a&gt; and a locally-running &lt;a href="https://ollama.com/" target="_blank" rel="noreferrer"&gt;Ollama&lt;/a&gt; instance. The setup uses a local LLM to read document text and automatically populate metadata fields — title, document type, tags, correspondent, date, and custom fields.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Hardware and Architecture
+ &lt;div id="hardware-and-architecture" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#hardware-and-architecture" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;NAS (Synology DS1621+, &lt;code&gt;10.0.10.10&lt;/code&gt;)&lt;/strong&gt;: runs paperless-ngx on port 5656&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Desktop PC&lt;/strong&gt;: Windows with WSL2, Docker Desktop, RTX 4090&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Goal&lt;/strong&gt;: AI auto-tagging/classification using a local LLM, zero cloud dependency&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The key architecture decision is a &lt;strong&gt;pull model&lt;/strong&gt;: paperless-ai runs in WSL2 Docker, polls the paperless-ngx API for documents tagged &lt;code&gt;ai-pending&lt;/code&gt;, processes them with Ollama, and writes metadata back. This is the correct approach for a desktop that is not on 24/7 — the NAS holds the queue and the desktop drains it when available.&lt;/p&gt;</description></item><item><title>AirPrint on Synology NAS via CUPS Docker</title><link>https://yanghu.github.io/posts/airprint-nas-setup/</link><pubDate>Wed, 11 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/airprint-nas-setup/</guid><description>&lt;p&gt;Runbook for setting up AirPrint on a Synology NAS so iOS/macOS devices can
+print to a USB or network printer over the local network. Uses a Docker CUPS
+container and Synology&amp;rsquo;s built-in avahi (mDNS) daemon for service discovery.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Architecture
+ &lt;div id="architecture" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#architecture" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;iPhone
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ mDNS discovery (_ipp._tcp)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Synology avahi-daemon (eth4, port 5353)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ reads service files from /etc/avahi/services/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;CUPS Docker container (host network, port 631)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ generates /etc/avahi/services/AirPrint-*.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ proxies print jobs to printer
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Printer (e.g. socket://10.0.20.50:9100)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Key design decisions:&lt;/p&gt;</description></item><item><title>Paperless-ngx: Migrating a Decade of Documents from Google Drive</title><link>https://yanghu.github.io/posts/paperless-ngx-migration/</link><pubDate>Wed, 11 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/paperless-ngx-migration/</guid><description>&lt;p&gt;Runbook and design journal for migrating ~400 personal documents from a
+folder-based Google Drive system into Paperless-ngx on a Synology NAS.
+Covers taxonomy design, bulk import from Google Takeout, ML classifier
+setup, and ongoing intake workflow.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Problem Statement
+ &lt;div id="problem-statement" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#problem-statement" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;For years my &amp;ldquo;document management&amp;rdquo; was a manually maintained folder tree on
+Google Drive:&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;10 - 文书材料/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 10 - 证件材料/身份证件/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - 移民文档/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - Tax Filing/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 40 - Finance/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 50 - 车辆注册/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 60 - 住房买房/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 80 - Medical/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;20 - 家装住房信息/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;80 - 旅行计划/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This worked well enough for filing but poorly for retrieval. Finding &amp;ldquo;what
+insurance forms did I have in 2022?&amp;rdquo; meant navigating six folders and
+guessing what I named things. Paperless-ngx offers full-text search, OCR,
+and an ML classifier that learns from your own labeling — a meaningfully
+better system for a document archive that spans immigration paperwork, tax
+filings, mortgage docs, and medical records across 10+ years.&lt;/p&gt;</description></item><item><title>Synology Photos → Immich Migration Runbook</title><link>https://yanghu.github.io/posts/synology-to-immich-migration/</link><pubDate>Mon, 09 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/synology-to-immich-migration/</guid><description>&lt;p&gt;Personal runbook for migrating a family photo library from Synology Photos to a
+self-hosted &lt;a href="https://immich.app/" target="_blank" rel="noreferrer"&gt;Immich&lt;/a&gt; instance. Covers bulk upload, Google
+Takeout import, and album reconstruction via the Synology PostgreSQL database.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;Setup
+ &lt;div id="setup" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#setup" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Source&lt;/strong&gt;: Synology NAS running Synology Photos (multiple users)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Destination&lt;/strong&gt;: Immich self-hosted on the same NAS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload tool&lt;/strong&gt;: &lt;a href="https://github.com/simulot/immich-go" target="_blank" rel="noreferrer"&gt;immich-go&lt;/a&gt; v0.31+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Client&lt;/strong&gt;: WSL2 on Windows, SSH access to NAS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Album script&lt;/strong&gt;: custom Python (&lt;code&gt;migrate_albums.py&lt;/code&gt;) using Immich REST API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;Phase 1: Photo Uploads
+ &lt;div id="phase-1-photo-uploads" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#phase-1-photo-uploads" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;Strategy
+ &lt;div id="strategy" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#strategy" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;Two sources per user:&lt;/p&gt;</description></item></channel></rss>

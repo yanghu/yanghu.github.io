@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Synology on Yang's Notes</title><link>https://yanghu.github.io/zh/tags/synology/</link><description>Recent content in Synology on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Thu, 12 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/zh/tags/synology/index.xml" rel="self" type="application/rss+xml"/><item><title>在 Plex 中整理本地讲座视频并添加 Metadata</title><link>https://yanghu.github.io/zh/posts/plex-local-media-metadata/</link><pubDate>Thu, 12 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/plex-local-media-metadata/</guid><description>&lt;p&gt;如何将本地讲座/课程视频（没有 TMDB/TVDB 收录的）在 Plex 中整理成结构清晰的电视节目，并通过 Plex API 写入自定义描述文字。&lt;/p&gt;
+&lt;p&gt;示例是 Jonathan Biss 的 &lt;em&gt;Exploring Beethoven&amp;rsquo;s Piano Sonatas&lt;/em&gt;——Curtis 音乐学院与 Coursera 合作的 5 部分课程，存储在 Synology NAS 上。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;问题
+ &lt;div id="问题" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%97%ae%e9%a2%98" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Plex 默认的 metadata 爬虫依赖 TMDB 或 TVDB。没有收录的本地讲座视频要么显示成一堆无封面的乱列表，要么被错误匹配到不相关的节目。&lt;/p&gt;
+&lt;p&gt;解决方案：将课程当作**电视节目（TV Show）**处理，使用 Plex 的 &lt;strong&gt;Personal Media Shows&lt;/strong&gt; 代理，再通过 Plex API 推送自定义 metadata。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;第一步：按 Season/Episode 结构整理文件
+ &lt;div id="第一步按-seasonepisode-结构整理文件" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e6%8c%89-seasonepisode-%e7%bb%93%e6%9e%84%e6%95%b4%e7%90%86%e6%96%87%e4%bb%b6" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Plex 的 TV Show 扫描器要求文件名包含 &lt;code&gt;SxxExx&lt;/code&gt;：&lt;/p&gt;</description></item><item><title>用 Paperless-ngx 整理十年文档：从 Google Drive 文件夹到全文检索归档库</title><link>https://yanghu.github.io/zh/posts/paperless-ngx-migration/</link><pubDate>Wed, 11 Mar 2026 00:00:01 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/paperless-ngx-migration/</guid><description>&lt;p&gt;将近十年积累的个人文档从 Google Drive 文件夹体系迁移到 Paperless-ngx 的完整记录。
+涵盖分类体系设计、从 Google Takeout 批量导入、ML 分类器训练，以及日常收件箱工作流。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;为什么要迁移
+ &lt;div id="为什么要迁移" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e8%bf%81%e7%a7%bb" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;过去多年，我的&amp;quot;文档管理&amp;quot;是一棵手工维护的 Google Drive 文件夹树：&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;10 - 文书材料/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 10 - 证件材料/身份证件/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - 移民文档/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 30 - Tax Filing/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 40 - Finance/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 50 - 车辆注册/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 60 - 住房买房/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 80 - Medical/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;20 - 家装住房信息/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;80 - 旅行计划/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;归档时还算顺手，但检索很痛苦。想找&amp;quot;2022 年的保险表格&amp;quot;，要翻六个文件夹，还得猜当时的命名。
+Paperless-ngx 提供全文检索、OCR、以及会从你自己的标注中学习的 ML 分类器——
+对于横跨移民手续、税务申报、房产合同、医疗记录的文档库来说，这是本质性的提升。&lt;/p&gt;</description></item><item><title>在 Synology NAS 上通过 CUPS Docker 实现 AirPrint</title><link>https://yanghu.github.io/zh/posts/airprint-nas-setup/</link><pubDate>Wed, 11 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/airprint-nas-setup/</guid><description>&lt;p&gt;在 Synology NAS 上配置 AirPrint 的操作手册，让 iOS/macOS 设备可以通过局域网打印到 USB 或网络打印机。使用 Docker CUPS 容器和 Synology 内置的 avahi（mDNS）守护进程实现服务发现。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;架构
+ &lt;div id="架构" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%9e%b6%e6%9e%84" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;iPhone
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ mDNS 发现 (_ipp._tcp)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Synology avahi-daemon（eth4，端口 5353）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ 从 /etc/avahi/services/ 读取服务文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;CUPS Docker 容器（host 网络模式，端口 631）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ 生成 /etc/avahi/services/AirPrint-*.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; │ 将打印任务代理到打印机
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ▼
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;打印机（如 socket://10.0.20.50:9100）&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;关键设计决策：&lt;/p&gt;</description></item><item><title>Synology Photos 迁移到 Immich 操作手册</title><link>https://yanghu.github.io/zh/posts/synology-to-immich-migration/</link><pubDate>Mon, 09 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/zh/posts/synology-to-immich-migration/</guid><description>&lt;p&gt;将家庭相册从 Synology Photos 迁移到自托管 &lt;a href="https://immich.app/" target="_blank" rel="noreferrer"&gt;Immich&lt;/a&gt; 实例的个人操作手册。
+涵盖批量上传、Google Takeout 导入，以及通过 Synology PostgreSQL 数据库重建相册。&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;环境说明
+ &lt;div id="环境说明" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%8e%af%e5%a2%83%e8%af%b4%e6%98%8e" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;来源&lt;/strong&gt;：运行 Synology Photos 的 Synology NAS（多用户）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;目标&lt;/strong&gt;：同一 NAS 上自托管的 Immich&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;上传工具&lt;/strong&gt;：&lt;a href="https://github.com/simulot/immich-go" target="_blank" rel="noreferrer"&gt;immich-go&lt;/a&gt; v0.31+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;客户端&lt;/strong&gt;：Windows 上的 WSL2，SSH 访问 NAS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;相册脚本&lt;/strong&gt;：自定义 Python（&lt;code&gt;migrate_albums.py&lt;/code&gt;），使用 Immich REST API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="relative group"&gt;第一阶段：照片上传
+ &lt;div id="第一阶段照片上传" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ac%ac%e4%b8%80%e9%98%b6%e6%ae%b5%e7%85%a7%e7%89%87%e4%b8%8a%e4%bc%a0" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+
+&lt;h3 class="relative group"&gt;策略
+ &lt;div id="策略" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ad%96%e7%95%a5" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;每位用户有两个来源：&lt;/p&gt;</description></item></channel></rss>

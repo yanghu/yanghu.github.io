@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Media on Yang's Notes</title><link>https://yanghu.github.io/tags/media/</link><description>Recent content in Media on Yang's Notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>yang@yhu.me (Yang Hu)</managingEditor><webMaster>yang@yhu.me (Yang Hu)</webMaster><copyright>© 2026 Yang Hu</copyright><lastBuildDate>Thu, 12 Mar 2026 00:00:00 -0800</lastBuildDate><atom:link href="https://yanghu.github.io/tags/media/index.xml" rel="self" type="application/rss+xml"/><item><title>Organizing Local Lecture Videos in Plex with Proper Metadata</title><link>https://yanghu.github.io/posts/plex-local-media-metadata/</link><pubDate>Thu, 12 Mar 2026 00:00:00 -0800</pubDate><author>yang@yhu.me (Yang Hu)</author><guid>https://yanghu.github.io/posts/plex-local-media-metadata/</guid><description>&lt;p&gt;How to structure local lecture/course videos (without an official TMDB/TVDB entry) in Plex as a proper TV Show with seasons, episode titles, and custom descriptions set via the Plex API.&lt;/p&gt;
+&lt;p&gt;The example here is Jonathan Biss&amp;rsquo;s &lt;em&gt;Exploring Beethoven&amp;rsquo;s Piano Sonatas&lt;/em&gt; — a 5-part Coursera course from the Curtis Institute of Music, stored on a Synology NAS.&lt;/p&gt;
+
+&lt;h2 class="relative group"&gt;The Problem
+ &lt;div id="the-problem" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-problem" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Plex&amp;rsquo;s default scrapers rely on TMDB or TVDB. Local lecture videos with no database entry either show up as a mess of unmatched files, or get incorrectly matched to something unrelated.&lt;/p&gt;</description></item></channel></rss>

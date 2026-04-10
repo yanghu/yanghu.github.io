@@ -1,0 +1,5 @@
+/* applying css into shadow DOM doesn't really work. */
+/* need to find a different solution for this */
+:host {
+    max-height: 5rem;
+}
